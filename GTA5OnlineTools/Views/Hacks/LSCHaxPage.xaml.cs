@@ -1,4 +1,4 @@
-﻿namespace GTA5OnlineTools.Views.Pages;
+﻿namespace GTA5OnlineTools.Views.Hacks;
 
 /// <summary>
 /// LSCHaxPage.xaml 的交互逻辑

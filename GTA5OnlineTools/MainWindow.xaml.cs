@@ -38,8 +38,8 @@ public partial class MainWindow
     /// 用户控件，用于视图切换
     /// </summary>
     private readonly HomeView HomeView = new();
-    private readonly ThirdView ThirdView = new();
-    private readonly HacksView HacksView = new();
+    private readonly HacksView ThirdView = new();
+    private readonly ModulesView HacksView = new();
     private readonly ToolsView ToolsView = new();
     private readonly OptionView OptionView = new();
     private readonly AboutView AboutView = new();

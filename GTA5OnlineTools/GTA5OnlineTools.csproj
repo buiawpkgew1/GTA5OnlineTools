@@ -120,4 +120,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Modules\" />
+  </ItemGroup>
+
 </Project>
