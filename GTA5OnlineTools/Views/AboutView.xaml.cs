@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using GTA5OnlineTools.Common.Utils;
 
-namespace GTA5OnlineTools.Views
+using CommunityToolkit.Mvvm.Input;
+
+namespace GTA5OnlineTools.Views;
+
+/// <summary>
+/// AboutView.xaml 的交互逻辑
+/// </summary>
+public partial class AboutView : UserControl
 {
-    /// <summary>
-    /// AboutView.xaml 的交互逻辑
-    /// </summary>
-    public partial class AboutView : UserControl
+    public RelayCommand<string> HyperlinkClickCommand { get; private set; }
+
+    public AboutView()
     {
-        public AboutView()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+        this.DataContext = this;
+
+        HyperlinkClickCommand = new(HyperlinkClick);
+    }
+
+    private void HyperlinkClick(string url)
+    {
+        ProcessUtil.OpenURL(url);
     }
 }

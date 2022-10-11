@@ -43,7 +43,7 @@ public partial class ModulesView : UserControl
     /// </summary>
     private void CreateMenuBar()
     {
-        MenuBars.Add(new MenuBar() { Emoji = "🍏", Title = "使用说明", NameSpace = "ReadMeView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "使用说明", NameSpace = "ReadMeView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍊", Title = "玩家属性", NameSpace = "PlayerStateView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "世界功能", NameSpace = "WorldFunctionView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "线上选项", NameSpace = "OnlineOptionView" });

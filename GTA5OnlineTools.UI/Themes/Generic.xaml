@@ -14,6 +14,7 @@
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/ToggleButton.xaml" />
 
+        <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/ButtonIcon.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/ButtonEmoji.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/RadioButtonEmoji.xaml" />
 
