@@ -1,5 +1,5 @@
 ﻿using GTA5OnlineTools.Models;
-using GTA5OnlineTools.Views.Hacks;
+using GTA5OnlineTools.Views.Cheats;
 using GTA5OnlineTools.Features;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Common.Utils;
@@ -10,16 +10,16 @@ using CommunityToolkit.Mvvm.Input;
 namespace GTA5OnlineTools.Views;
 
 /// <summary>
-/// HacksView.xaml 的交互逻辑
+/// CheatsView.xaml 的交互逻辑
 /// </summary>
-public partial class HacksView : UserControl
+public partial class CheatsView : UserControl
 {
     /// <summary>
     /// Third数据模型
     /// </summary>
-    public HacksModel HacksModel { get; set; } = new();
+    public CheatsModel CheatsModel { get; set; } = new();
 
-    public RelayCommand<string> HacksClickCommand { get; private set; }
+    public RelayCommand<string> CheatsClickCommand { get; private set; }
     public RelayCommand<string> ReadMeClickCommand { get; private set; }
     public RelayCommand<string> PathClickCommand { get; private set; }
 
@@ -31,20 +31,20 @@ public partial class HacksView : UserControl
     private readonly LSCHaxPage LSCHaxPage = new();
     private readonly YimMenuPage YimMenuPage = new();
 
-    public HacksView()
+    public CheatsView()
     {
         InitializeComponent();
         this.DataContext = this;
 
-        HacksClickCommand = new(HacksClick);
+        CheatsClickCommand = new(CheatsClick);
         ReadMeClickCommand = new(ReadMeClick);
         PathClickCommand = new(PathClick);
 
         FrameHideClickCommand = new(FrameHideClick);
 
-        new Thread(CheckThirdIsRun)
+        new Thread(CheckCheatsIsRun)
         {
-            Name = "CheckThirdIsRun",
+            Name = "CheckCheatsIsRun",
             IsBackground = true
         }.Start();
     }
@@ -52,18 +52,18 @@ public partial class HacksView : UserControl
     /// <summary>
     /// 检查第三方辅助是否正在运行线程
     /// </summary>
-    private void CheckThirdIsRun()
+    private void CheckCheatsIsRun()
     {
         while (Globals.IsAppRunning)
         {
             // 判断 Kiddion 是否运行
-            HacksModel.KiddionIsRun = ProcessUtil.IsAppRun("Kiddion");
+            CheatsModel.KiddionIsRun = ProcessUtil.IsAppRun("Kiddion");
             // 判断 GTAHax 是否运行
-            HacksModel.GTAHaxIsRun = ProcessUtil.IsAppRun("GTAHax");
+            CheatsModel.GTAHaxIsRun = ProcessUtil.IsAppRun("GTAHax");
             // 判断 BincoHax 是否运行
-            HacksModel.BincoHaxIsRun = ProcessUtil.IsAppRun("BincoHax");
+            CheatsModel.BincoHaxIsRun = ProcessUtil.IsAppRun("BincoHax");
             // 判断 LSCHax 是否运行
-            HacksModel.LSCHaxIsRun = ProcessUtil.IsAppRun("LSCHax");
+            CheatsModel.LSCHaxIsRun = ProcessUtil.IsAppRun("LSCHax");
 
             Thread.Sleep(1000);
         }
@@ -73,7 +73,7 @@ public partial class HacksView : UserControl
     /// 点击第三方辅助开关按钮
     /// </summary>
     /// <param name="hackName"></param>
-    private void HacksClick(string hackName)
+    private void CheatsClick(string hackName)
     {
         AudioUtil.ClickSound();
 
@@ -108,24 +108,24 @@ public partial class HacksView : UserControl
         switch (pageName)
         {
             case "KiddionPage":
-                HacksModel.FrameState = Visibility.Visible;
-                HacksModel.FrameContent = KiddionPage;
+                CheatsModel.FrameState = Visibility.Visible;
+                CheatsModel.FrameContent = KiddionPage;
                 break;
             case "GTAHaxPage":
-                HacksModel.FrameState = Visibility.Visible;
-                HacksModel.FrameContent = GTAHaxPage;
+                CheatsModel.FrameState = Visibility.Visible;
+                CheatsModel.FrameContent = GTAHaxPage;
                 break;
             case "BincoHaxPage":
-                HacksModel.FrameState = Visibility.Visible;
-                HacksModel.FrameContent = BincoHaxPage;
+                CheatsModel.FrameState = Visibility.Visible;
+                CheatsModel.FrameContent = BincoHaxPage;
                 break;
             case "LSCHaxPage":
-                HacksModel.FrameState = Visibility.Visible;
-                HacksModel.FrameContent = LSCHaxPage;
+                CheatsModel.FrameState = Visibility.Visible;
+                CheatsModel.FrameContent = LSCHaxPage;
                 break;
             case "YimMenuPage":
-                HacksModel.FrameState = Visibility.Visible;
-                HacksModel.FrameContent = YimMenuPage;
+                CheatsModel.FrameState = Visibility.Visible;
+                CheatsModel.FrameContent = YimMenuPage;
                 break;
         }
     }
@@ -161,7 +161,7 @@ public partial class HacksView : UserControl
 
         Task.Run(() =>
         {
-            if (HacksModel.KiddionIsRun)
+            if (CheatsModel.KiddionIsRun)
             {
                 // 先关闭Kiddion汉化程序
                 ProcessUtil.CloseProcess("Kiddion_Chs");
@@ -230,7 +230,7 @@ public partial class HacksView : UserControl
     /// </summary>
     private void GTAHaxClick()
     {
-        if (HacksModel.GTAHaxIsRun)
+        if (CheatsModel.GTAHaxIsRun)
             ProcessUtil.OpenProcess("GTAHax", false);
         else
             ProcessUtil.CloseProcess("GTAHax");
@@ -241,7 +241,7 @@ public partial class HacksView : UserControl
     /// </summary>
     private void BincoHaxClick()
     {
-        if (HacksModel.BincoHaxIsRun)
+        if (CheatsModel.BincoHaxIsRun)
             ProcessUtil.OpenProcess("BincoHax", false);
         else
             ProcessUtil.CloseProcess("BincoHax");
@@ -252,7 +252,7 @@ public partial class HacksView : UserControl
     /// </summary>
     private void LSCHaxClick()
     {
-        if (HacksModel.LSCHaxIsRun)
+        if (CheatsModel.LSCHaxIsRun)
             ProcessUtil.OpenProcess("LSCHax", false);
         else
             ProcessUtil.CloseProcess("LSCHax");
@@ -297,7 +297,7 @@ public partial class HacksView : UserControl
     /// </summary>
     private void FrameHideClick()
     {
-        HacksModel.FrameState = Visibility.Collapsed;
-        HacksModel.FrameContent = null;
+        CheatsModel.FrameState = Visibility.Collapsed;
+        CheatsModel.FrameContent = null;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace GTA5OnlineTools.Views.Hacks;
+﻿namespace GTA5OnlineTools.Views.Cheats;
 
 /// <summary>
 /// YimMenuPage.xaml 的交互逻辑

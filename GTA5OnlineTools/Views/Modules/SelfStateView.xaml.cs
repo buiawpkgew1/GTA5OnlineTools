@@ -6,16 +6,16 @@ using GTA5OnlineTools.Features.Data;
 namespace GTA5OnlineTools.Views.Modules;
 
 /// <summary>
-/// PlayerStateView.xaml 的交互逻辑
+/// SelfStateView.xaml 的交互逻辑
 /// </summary>
-public partial class PlayerStateView : UserControl
+public partial class SelfStateView : UserControl
 {
     // 快捷键
     private HotKeys MainHotKeys;
 
     private bool NoCollisionToggle = false;
 
-    public PlayerStateView()
+    public SelfStateView()
     {
         InitializeComponent();
         this.DataContext = this;

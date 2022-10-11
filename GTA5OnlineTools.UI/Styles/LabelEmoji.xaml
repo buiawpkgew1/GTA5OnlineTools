@@ -51,7 +51,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:UiLabelEmoji}">
-                    <StackPanel Orientation="Horizontal">
+                    <StackPanel VerticalAlignment="Center" Orientation="Horizontal">
                         <emoji:TextBlock
                             Width="15"
                             Margin="0,0,5,0"

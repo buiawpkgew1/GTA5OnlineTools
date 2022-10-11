@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="GTA5OnlineTools.Views.Modules.PlayerStateView"
+    x:Class="GTA5OnlineTools.Views.Modules.SelfStateView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -14,13 +14,11 @@
         <StackPanel>
             <ui:UiLabelEmoji Content="属性调节" />
             <StackPanel Margin="5,0,5,0">
+                <!--  生命值  -->
                 <DockPanel LastChildFill="True">
-                    <DockPanel
-                        Width="120"
-                        VerticalAlignment="Center"
-                        DockPanel.Dock="Left">
+                    <DockPanel Width="120" DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
-                            Margin="5,5,0,5"
+                            Margin="5,0,0,0"
                             Content="生命值"
                             Emoji="❤️"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
@@ -39,14 +37,14 @@
                         TickFrequency="1"
                         ValueChanged="Slider_Health_ValueChanged" />
                 </DockPanel>
-
+                <!--  最大生命值  -->
                 <DockPanel LastChildFill="True">
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
-                            Margin="5,5,0,5"
+                            Margin="5,0,0,0"
                             Content="最大生命值"
                             Emoji="💖"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
@@ -65,14 +63,14 @@
                         TickFrequency="1"
                         ValueChanged="Slider_MaxHealth_ValueChanged" />
                 </DockPanel>
-
+                <!--  护甲值  -->
                 <DockPanel LastChildFill="True">
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
-                            Margin="5,5,0,5"
+                            Margin="5,0,0,0"
                             Content="护甲值"
                             Emoji="💎"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
@@ -91,14 +89,14 @@
                         TickFrequency="1"
                         ValueChanged="Slider_Armor_ValueChanged" />
                 </DockPanel>
-
+                <!--  通缉等级  -->
                 <DockPanel LastChildFill="True">
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
-                            Margin="5,5,0,5"
+                            Margin="5,0,0,0"
                             Content="通缉等级"
                             Emoji="👮"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
@@ -117,14 +115,14 @@
                         TickFrequency="1"
                         ValueChanged="Slider_Wanted_ValueChanged" />
                 </DockPanel>
-
+                <!--  奔跑速度  -->
                 <DockPanel LastChildFill="True">
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
-                            Margin="5,5,0,5"
+                            Margin="5,0,0,0"
                             Content="奔跑速度"
                             Emoji="🏃‍"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
@@ -143,11 +141,11 @@
                         TickFrequency="0.1"
                         ValueChanged="Slider_RunSpeed_ValueChanged" />
                 </DockPanel>
-
+                <!--  游泳速度  -->
                 <DockPanel LastChildFill="True">
                     <DockPanel Width="120" DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
-                            Margin="5,5,0,5"
+                            Margin="5,0,0,0"
                             Content="游泳速度"
                             Emoji="🏊"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
@@ -166,14 +164,14 @@
                         TickFrequency="0.1"
                         ValueChanged="Slider_SwimSpeed_ValueChanged" />
                 </DockPanel>
-
+                <!--  潜行速度  -->
                 <DockPanel LastChildFill="True">
                     <DockPanel
                         Width="120"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left">
                         <ui:UiLabelEmoji
-                            Margin="5,5,0,5"
+                            Margin="5,0,0,0"
                             Content="潜行速度"
                             Emoji="🚶🏻"
                             Style="{StaticResource LabelEmojiStyle_MenuTitle}" />
@@ -195,7 +193,7 @@
             </StackPanel>
 
             <ui:UiLabelEmoji Content="一般选项" />
-            <StackPanel Margin="3,0,3,0">
+            <StackPanel Margin="5,0,5,0">
                 <CheckBox
                     x:Name="CheckBox_PlayerGodMode"
                     Click="CheckBox_PlayerGodMode_Click"
@@ -232,7 +230,7 @@
         <!--  面板2  -->
         <StackPanel>
             <ui:UiLabelEmoji Content="快捷键" />
-            <StackPanel Margin="3,0,3,0">
+            <StackPanel Margin="5,0,5,0">
                 <CheckBox
                     x:Name="CheckBox_ToWaypoint"
                     Content="[F5] 传送到导航点"
@@ -249,6 +247,7 @@
                     x:Name="CheckBox_ClearWanted"
                     Content="[F8] 消除警星"
                     IsChecked="True" />
+
                 <TextBlock />
                 <CheckBox
                     x:Name="CheckBox_FillAllAmmo"
@@ -286,7 +285,7 @@
             </StackPanel>
 
             <ui:UiLabelEmoji Content="快捷功能" />
-            <WrapPanel Margin="3,0,3,0">
+            <WrapPanel Margin="5,0,5,0">
                 <Button
                     x:Name="Button_ToWaypoint"
                     Click="Button_ToWaypoint_Click"
@@ -313,7 +312,7 @@
         <!--  面板3  -->
         <StackPanel>
             <ui:UiLabelEmoji Content="实用功能" />
-            <StackPanel Margin="3,0,3,0">
+            <StackPanel Margin="5,0,5,0">
                 <CheckBox
                     x:Name="CheckBox_AutoClearWanted"
                     Click="CheckBox_AutoClearWanted_Click"
@@ -333,7 +332,7 @@
             </StackPanel>
 
             <ui:UiLabelEmoji Content="高级" />
-            <StackPanel Margin="3,0,3,0">
+            <StackPanel Margin="5,0,5,0">
                 <CheckBox
                     x:Name="CheckBox_ProofBullet"
                     Click="CheckBox_ProofBullet_Click"

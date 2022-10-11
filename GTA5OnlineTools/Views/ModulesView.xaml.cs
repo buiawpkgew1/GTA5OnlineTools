@@ -19,7 +19,7 @@ public partial class ModulesView : UserControl
     /// </summary>
     public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
-    private readonly PlayerStateView PlayerStateView = new();
+    private readonly SelfStateView SelfStateView = new();
     private readonly WorldFunctionView WorldFunctionView = new();
     private readonly OnlineOptionView OnlineOptionView = new();
     private readonly PlayerListView PlayerListView = new();
@@ -35,7 +35,7 @@ public partial class ModulesView : UserControl
         // 绑定菜单切换命令
         NavigateCommand = new(Navigate);
         // 设置主页
-        ContentControl_Main.Content = PlayerStateView;
+        ContentControl_Main.Content = SelfStateView;
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public partial class ModulesView : UserControl
     /// </summary>
     private void CreateMenuBar()
     {
-        MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "玩家属性", NameSpace = "PlayerStateView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "自身属性", NameSpace = "SelfStateView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍊", Title = "世界功能", NameSpace = "WorldFunctionView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "线上选项", NameSpace = "OnlineOptionView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "玩家列表", NameSpace = "PlayerListView" });
@@ -53,16 +53,16 @@ public partial class ModulesView : UserControl
     /// <summary>
     /// 页面导航（重复点击不会重复触发）
     /// </summary>
-    /// <param name="obj"></param>
-    private void Navigate(MenuBar obj)
+    /// <param name="menu"></param>
+    private void Navigate(MenuBar menu)
     {
-        if (obj == null || string.IsNullOrEmpty(obj.NameSpace))
+        if (menu == null || string.IsNullOrEmpty(menu.NameSpace))
             return;
 
-        switch (obj.NameSpace)
+        switch (menu.NameSpace)
         {
-            case "PlayerStateView":
-                ContentControl_Main.Content = PlayerStateView;
+            case "SelfStateView":
+                ContentControl_Main.Content = SelfStateView;
                 break;
             case "WorldFunctionView":
                 ContentControl_Main.Content = WorldFunctionView;

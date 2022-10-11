@@ -2,7 +2,7 @@
 
 namespace GTA5OnlineTools.Models;
 
-public class HacksModel : ObservableObject
+public class CheatsModel : ObservableObject
 {
     private bool _kiddionIsRun = false;
     /// <summary>
