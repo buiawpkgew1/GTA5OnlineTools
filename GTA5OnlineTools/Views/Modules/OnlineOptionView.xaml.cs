@@ -9,8 +9,6 @@ namespace GTA5OnlineTools.Views.Modules;
 /// </summary>
 public partial class OnlineOptionView : UserControl
 {
-    private List<PVInfo> pVInfos = new();
-
     public OnlineOptionView()
     {
         InitializeComponent();
@@ -21,6 +19,43 @@ public partial class OnlineOptionView : UserControl
     private void MainWindow_WindowClosingEvent()
     {
         
+    }
+
+    private void Button_Sessions_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        var str = (e.OriginalSource as Button).Content.ToString();
+        var index = MiscData.Sessions.FindIndex(t => t.Name == str);
+        if (index != -1)
+            Online.LoadSession(MiscData.Sessions[index].ID);
+    }
+
+    private void Button_EmptySession_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        Online.EmptySession();
+    }
+
+    private void Button_RPxN_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        var str = (e.OriginalSource as Button).Content.ToString();
+        var index = MiscData.RPxNs.FindIndex(t => t.Name == str);
+        if (index != -1)
+            Online.RPMultiplier(MiscData.RPxNs[index].ID);
+    }
+
+    private void Button_REPxN_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        var str = (e.OriginalSource as Button).Content.ToString();
+        var index = MiscData.REPxNs.FindIndex(t => t.Name == str);
+        if (index != -1)
+            Online.REPMultiplier(MiscData.REPxNs[index].ID);
     }
 
     private void CheckBox_RemovePassiveModeCooldown_Click(object sender, RoutedEventArgs e)
@@ -113,63 +148,4 @@ public partial class OnlineOptionView : UserControl
     {
         Online.CallAirstrike(CheckBox_Airstrike.IsChecked == true);
     }
-
-    private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.ClickSound();
-
-        ListBox_PersonalVehicle.Items.Clear();
-        pVInfos.Clear();
-
-        Task.Run(() =>
-        {
-            int max_slots = Hacks.ReadGA<int>(1585857);
-            for (int i = 0; i < max_slots; i++)
-            {
-                long hash = Hacks.ReadGA<long>(1585857 + 1 + (i * 142) + 66);
-                if (hash == 0)
-                    continue;
-
-                string plate = Hacks.ReadGAString(1585857 + 1 + (i * 142) + 1);
-
-                pVInfos.Add(new PVInfo()
-                {
-                    Index = i,
-                    Name = Vehicle.FindVehicleDisplayName(hash, true),
-                    hash = hash,
-                    plate = plate
-                });
-            }
-
-            foreach (var item in pVInfos)
-            {
-                Application.Current.Dispatcher.Invoke(() =>
-                {
-                    ListBox_PersonalVehicle.Items.Add($"[{item.plate}]\t{item.Name}");
-                });
-            }
-        });
-    }
-
-    private void Button_SpawnPersonalVehicle_Click(object sender, RoutedEventArgs e)
-    {
-        AudioUtil.ClickSound();
-
-        int index = ListBox_PersonalVehicle.SelectedIndex;
-        if (index != -1)
-        {
-            Task.Run(() =>
-            {
-                Vehicle.SpawnPersonalVehicle(pVInfos[index].Index);
-            });
-        }
-    }
-}
-
-public struct PVInfo
-{
-    public int Index;
-    public string Name;
-    public long hash;
-    public string plate;
 }

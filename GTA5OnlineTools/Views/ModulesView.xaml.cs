@@ -24,6 +24,8 @@ public partial class ModulesView : UserControl
     private readonly OnlineOptionView OnlineOptionView = new();
     private readonly PlayerListView PlayerListView = new();
     private readonly SpawnVehicleView SpawnVehicleView = new();
+    private readonly SpawnWeaponView SpawnWeaponView = new();
+    private readonly ExternalOverlayView ExternalOverlayView = new();
 
     public ModulesView()
     {
@@ -48,6 +50,8 @@ public partial class ModulesView : UserControl
         MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "线上选项", NameSpace = "OnlineOptionView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "玩家列表", NameSpace = "PlayerListView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "线上载具", NameSpace = "SpawnVehicleView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "线上武器", NameSpace = "SpawnWeaponView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍅", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
     }
 
     /// <summary>
@@ -75,6 +79,12 @@ public partial class ModulesView : UserControl
                 break;
             case "SpawnVehicleView":
                 ContentControl_Main.Content = SpawnVehicleView;
+                break;
+            case "SpawnWeaponView":
+                ContentControl_Main.Content = SpawnWeaponView;
+                break;
+            case "ExternalOverlayView":
+                ContentControl_Main.Content = ExternalOverlayView;
                 break;
         }
     }
