@@ -299,7 +299,7 @@
                                         CommandParameter="YimMenu"
                                         Content="注入"
                                         Emoji="💉"
-                                        Style="{StaticResource ButtonEmojiStyle_HackBase}" />
+                                        Style="{StaticResource ButtonEmojiStyle_HackInject}" />
                                 </StackPanel>
                             </DockPanel>
                             <!--  简介  -->

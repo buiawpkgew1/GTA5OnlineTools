@@ -4,6 +4,7 @@
     xmlns:controls="clr-namespace:GTA5OnlineTools.UI.Controls"
     xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf">
 
+    <!--  导航菜单RadioButton样式  -->
     <Style x:Key="RadioButtonStyle_NavMenu" TargetType="{x:Type controls:UiRadioButtonEmoji}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />

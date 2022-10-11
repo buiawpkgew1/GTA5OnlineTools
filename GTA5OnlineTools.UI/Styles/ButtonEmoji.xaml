@@ -60,7 +60,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ButtonEmojiStyle_HackBase" TargetType="{x:Type controls:UiButtonEmoji}">
+    <Style x:Key="ButtonEmojiStyle_HackInject" TargetType="{x:Type controls:UiButtonEmoji}">
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
@@ -106,47 +106,6 @@
                         <Trigger Property="IsEnabled" Value="False">
                             <Setter TargetName="border" Property="BorderBrush" Value="#E4E7ED" />
                             <Setter Property="Foreground" Value="#A8ABB2" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
-    <Style x:Key="ButtonEmojiStyle_OnlyEmoji" TargetType="{x:Type controls:UiButtonEmoji}">
-        <Setter Property="OverridesDefaultStyle" Value="True" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
-        <Setter Property="Margin" Value="0,5,5,5" />
-        <Setter Property="Padding" Value="8" />
-        <Setter Property="Foreground" Value="White" />
-        <Setter Property="Background" Value="#1E88E5" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type controls:UiButtonEmoji}">
-                    <Border
-                        Name="border"
-                        Padding="{TemplateBinding Padding}"
-                        VerticalAlignment="Center"
-                        Background="{TemplateBinding Background}"
-                        BorderThickness="0"
-                        CornerRadius="5"
-                        SnapsToDevicePixels="True">
-                        <emoji:TextBlock
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            FontSize="14"
-                            Text="{TemplateBinding Emoji}" />
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#42A5F5" />
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Background" Value="#1976D2" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter TargetName="border" Property="Background" Value="#EEEEEE" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

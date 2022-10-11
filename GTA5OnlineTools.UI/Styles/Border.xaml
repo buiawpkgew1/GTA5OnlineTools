@@ -20,50 +20,13 @@
         </Style.Triggers>
     </Style>
 
+    <!--  第三方辅助Border预览图样式  -->
     <Style x:Key="BorderStyle_HacksPrewImage" TargetType="{x:Type Border}">
         <Setter Property="Width" Value="150" />
         <Setter Property="Margin" Value="5,5,0,5" />
         <Setter Property="BorderBrush" Value="Gray" />
         <Setter Property="BorderThickness" Value="0.5" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
-    </Style>
-
-    <Style x:Key="BorderStyle_FrameClose" TargetType="{x:Type Border}">
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="CornerRadius" Value="5" />
-        <Setter Property="HorizontalAlignment" Value="Right" />
-        <Setter Property="VerticalAlignment" Value="Top" />
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="{DynamicResource BlueColor}" />
-            </Trigger>
-            <Trigger Property="IsMouseOver" Value="False">
-                <Setter Property="Background" Value="Transparent" />
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="BorderStyle_Title" TargetType="{x:Type Border}">
-        <Setter Property="Padding" Value="3" />
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="Background" Value="#FCAF17" />
-    </Style>
-
-    <Style x:Key="BorderStyle_DropShadowEffect" TargetType="{x:Type Border}">
-        <Setter Property="Padding" Value="3" />
-        <Setter Property="Background" Value="White" />
-        <Setter Property="SnapsToDevicePixels" Value="True" />
-        <Setter Property="Effect">
-            <Setter.Value>
-                <DropShadowEffect
-                    BlurRadius="5"
-                    Direction="0"
-                    Opacity="0.6"
-                    ShadowDepth="0"
-                    Color="Black" />
-            </Setter.Value>
-        </Setter>
     </Style>
 
 </ResourceDictionary>
