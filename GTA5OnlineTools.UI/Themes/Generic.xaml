@@ -20,6 +20,7 @@
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/CheckBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/RadioButton.xaml" />
 
+        <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/LabelEmoji.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/ButtonIcon.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/ButtonEmoji.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/RadioButtonEmoji.xaml" />

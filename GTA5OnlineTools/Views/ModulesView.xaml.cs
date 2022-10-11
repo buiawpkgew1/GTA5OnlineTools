@@ -19,11 +19,11 @@ public partial class ModulesView : UserControl
     /// </summary>
     public RelayCommand<MenuBar> NavigateCommand { get; private set; }
 
-    private readonly ReadMeView ReadMeView = new();
     private readonly PlayerStateView PlayerStateView = new();
     private readonly WorldFunctionView WorldFunctionView = new();
     private readonly OnlineOptionView OnlineOptionView = new();
     private readonly PlayerListView PlayerListView = new();
+    private readonly SpawnVehicleView SpawnVehicleView = new();
 
     public ModulesView()
     {
@@ -35,7 +35,7 @@ public partial class ModulesView : UserControl
         // 绑定菜单切换命令
         NavigateCommand = new(Navigate);
         // 设置主页
-        ContentControl_Main.Content = ReadMeView;
+        ContentControl_Main.Content = PlayerStateView;
     }
 
     /// <summary>
@@ -43,11 +43,11 @@ public partial class ModulesView : UserControl
     /// </summary>
     private void CreateMenuBar()
     {
-        MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "使用说明", NameSpace = "ReadMeView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍊", Title = "玩家属性", NameSpace = "PlayerStateView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "世界功能", NameSpace = "WorldFunctionView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "线上选项", NameSpace = "OnlineOptionView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "玩家列表", NameSpace = "PlayerListView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "玩家属性", NameSpace = "PlayerStateView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍊", Title = "世界功能", NameSpace = "WorldFunctionView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "线上选项", NameSpace = "OnlineOptionView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "玩家列表", NameSpace = "PlayerListView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "线上载具", NameSpace = "SpawnVehicleView" });
     }
 
     /// <summary>
@@ -61,9 +61,6 @@ public partial class ModulesView : UserControl
 
         switch (obj.NameSpace)
         {
-            case "ReadMeView":
-                ContentControl_Main.Content = ReadMeView;
-                break;
             case "PlayerStateView":
                 ContentControl_Main.Content = PlayerStateView;
                 break;
@@ -75,6 +72,9 @@ public partial class ModulesView : UserControl
                 break;
             case "PlayerListView":
                 ContentControl_Main.Content = PlayerListView;
+                break;
+            case "SpawnVehicleView":
+                ContentControl_Main.Content = SpawnVehicleView;
                 break;
         }
     }

@@ -42,6 +42,7 @@
                                         <Setter TargetName="borderHeader" Property="Margin" Value="0,8,0,8" />
                                         <Setter TargetName="border" Property="Background" Value="#6CB5FE" />
                                         <Setter TargetName="border" Property="Opacity" Value="0.2" />
+                                        <Setter TargetName="border" Property="CornerRadius" Value="3" />
                                     </Trigger>
                                     <MultiTrigger>
                                         <MultiTrigger.Conditions>
@@ -50,6 +51,7 @@
                                         </MultiTrigger.Conditions>
                                         <Setter TargetName="border" Property="Background" Value="Gray" />
                                         <Setter TargetName="border" Property="Opacity" Value="0.2" />
+                                        <Setter TargetName="border" Property="CornerRadius" Value="3" />
                                     </MultiTrigger>
                                 </ControlTemplate.Triggers>
                             </ControlTemplate>
