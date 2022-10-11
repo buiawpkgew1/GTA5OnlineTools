@@ -33,7 +33,3 @@
 
 * FastGithub
 > https://github.com/dotnetcore/FastGithub/releases
-
-## 预览
-
-![](https://pic.rmb.bdstatic.com/bjh/3d863eae48c37132143fe0a7f9a317d9.png)
