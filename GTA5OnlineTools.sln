@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTA5OnlineTools", "GTA5OnlineTools\GTA5OnlineTools.csproj", "{D2A80618-EDAB-4A43-ACE0-C21B57AD4980}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GTA5OnlineTools.UI", "GTA5OnlineTools.UI\GTA5OnlineTools.UI.csproj", "{886D5F72-8A7C-49C3-A7F3-98478D9EFA90}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D2A80618-EDAB-4A43-ACE0-C21B57AD4980}.Debug|x64.ActiveCfg = Debug|x64
+		{D2A80618-EDAB-4A43-ACE0-C21B57AD4980}.Debug|x64.Build.0 = Debug|x64
+		{D2A80618-EDAB-4A43-ACE0-C21B57AD4980}.Release|x64.ActiveCfg = Release|x64
+		{D2A80618-EDAB-4A43-ACE0-C21B57AD4980}.Release|x64.Build.0 = Release|x64
+		{886D5F72-8A7C-49C3-A7F3-98478D9EFA90}.Debug|x64.ActiveCfg = Debug|x64
+		{886D5F72-8A7C-49C3-A7F3-98478D9EFA90}.Debug|x64.Build.0 = Debug|x64
+		{886D5F72-8A7C-49C3-A7F3-98478D9EFA90}.Release|x64.ActiveCfg = Release|x64
+		{886D5F72-8A7C-49C3-A7F3-98478D9EFA90}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F467FED4-977C-4448-952B-C7E0F846E41C}
+	EndGlobalSection
+EndGlobal

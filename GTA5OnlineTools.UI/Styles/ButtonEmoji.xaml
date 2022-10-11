@@ -1,0 +1,157 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:GTA5OnlineTools.UI.Controls"
+    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf">
+
+    <Style TargetType="{x:Type controls:UiButtonEmoji}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#2196F3" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:UiButtonEmoji}">
+                    <Border
+                        Name="border"
+                        Padding="{TemplateBinding Padding}"
+                        VerticalAlignment="Center"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="0"
+                        CornerRadius="5"
+                        SnapsToDevicePixels="True">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <emoji:TextBlock
+                                Name="emoji"
+                                Margin="0,0,5,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="{TemplateBinding Emoji}" />
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                VerticalAlignment="Center"
+                                SnapsToDevicePixels="True"
+                                TextElement.Foreground="{TemplateBinding Foreground}" />
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#42A5F5" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#1E88E5" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#EEEEEE" />
+                            <Setter TargetName="contentPresenter" Property="TextElement.Foreground" Value="Black" />
+                        </Trigger>
+                        <DataTrigger Binding="{Binding ElementName=emoji, Path=Text}" Value="{x:Null}">
+                            <Setter TargetName="emoji" Property="Margin" Value="0" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonEmojiStyle_HackBase" TargetType="{x:Type controls:UiButtonEmoji}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Margin" Value="5,5,0,0" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:UiButtonEmoji}">
+                    <Border
+                        Name="border"
+                        Padding="{TemplateBinding Padding}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="#808080"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        SnapsToDevicePixels="True">
+                        <StackPanel
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <emoji:TextBlock
+                                Margin="0,0,5,0"
+                                VerticalAlignment="Center"
+                                FontSize="14"
+                                Text="{TemplateBinding Emoji}" />
+                            <ContentPresenter
+                                x:Name="contentPresenter"
+                                VerticalAlignment="Center"
+                                SnapsToDevicePixels="True"
+                                TextElement.Foreground="{TemplateBinding Foreground}" />
+                        </StackPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#333130" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#ECF5FF" />
+                            <Setter TargetName="border" Property="BorderBrush" Value="{DynamicResource BlueColor}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="BorderBrush" Value="#E4E7ED" />
+                            <Setter Property="Foreground" Value="#A8ABB2" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ButtonEmojiStyle_OnlyEmoji" TargetType="{x:Type controls:UiButtonEmoji}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Margin" Value="0,5,5,5" />
+        <Setter Property="Padding" Value="8" />
+        <Setter Property="Foreground" Value="White" />
+        <Setter Property="Background" Value="#1E88E5" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:UiButtonEmoji}">
+                    <Border
+                        Name="border"
+                        Padding="{TemplateBinding Padding}"
+                        VerticalAlignment="Center"
+                        Background="{TemplateBinding Background}"
+                        BorderThickness="0"
+                        CornerRadius="5"
+                        SnapsToDevicePixels="True">
+                        <emoji:TextBlock
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            FontSize="14"
+                            Text="{TemplateBinding Emoji}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#42A5F5" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="#1976D2" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Background" Value="#EEEEEE" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>
