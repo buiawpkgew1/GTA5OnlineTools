@@ -17,6 +17,8 @@
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/ButtonEmoji.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/RadioButtonEmoji.xaml" />
 
+        <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/ListBox.xaml" />
+
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/LoadingSpinner.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/UserControl.xaml" />
         <ResourceDictionary Source="pack://application:,,,/GTA5OnlineTools.UI;component/Styles/Page.xaml" />

@@ -6,19 +6,11 @@
         <Setter Property="FontFamily" Value="../Fonts/#iconfont" />
     </Style>
 
-    <!--  根据GTA5是否运行呈现不同样式  -->
     <Style
-        x:Key="TextBlockStyle_IconFontGTA5IsRun"
+        x:Key="TextBlockStyle_IconFontVerCen"
         BasedOn="{StaticResource TextBlockStyle_IconFontBase}"
         TargetType="{x:Type TextBlock}">
-        <Style.Triggers>
-            <Trigger Property="IsEnabled" Value="True">
-                <Setter Property="Foreground" Value="Green" />
-            </Trigger>
-            <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Foreground" Value="Gray" />
-            </Trigger>
-        </Style.Triggers>
+        <Setter Property="VerticalAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="TextBlockStyle_Title" TargetType="{x:Type TextBlock}">
