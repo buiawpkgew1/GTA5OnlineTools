@@ -31,7 +31,6 @@
                                 Name="emoji"
                                 Margin="0,0,5,0"
                                 VerticalAlignment="Center"
-                                FontSize="14"
                                 Text="{TemplateBinding Emoji}" />
                             <ContentPresenter
                                 x:Name="contentPresenter"
@@ -86,7 +85,6 @@
                             <emoji:TextBlock
                                 Margin="0,0,5,0"
                                 VerticalAlignment="Center"
-                                FontSize="14"
                                 Text="{TemplateBinding Emoji}" />
                             <ContentPresenter
                                 x:Name="contentPresenter"

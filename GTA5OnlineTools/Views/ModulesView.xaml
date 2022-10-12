@@ -33,7 +33,7 @@
                 <DataTemplate DataType="{x:Type ListBoxItem}">
                     <StackPanel Orientation="Horizontal">
                         <emoji:TextBlock
-                            Margin="10,0,5,0"
+                            Margin="8,0,5,0"
                             VerticalAlignment="Center"
                             FontSize="14"
                             Text="{Binding Emoji}" />
@@ -43,10 +43,7 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <!--  ######################  -->
-        <ContentControl
-            x:Name="ContentControl_Main"
-            Grid.Column="1"
-            Margin="0,0,5,0" />
+        <ContentControl x:Name="ContentControl_Main" Grid.Column="1" />
     </Grid>
 
 </UserControl>

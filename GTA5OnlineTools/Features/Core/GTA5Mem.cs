@@ -176,7 +176,7 @@ public static class GTA5Mem
     {
         long address = 0;
 
-        List<byte> tempArray = new List<byte>();
+        var tempArray = new List<byte>();
         foreach (var each in pattern.Split(' '))
         {
             if (each == "??")
@@ -189,12 +189,12 @@ public static class GTA5Mem
             }
         }
 
-        byte[] patternByteArray = tempArray.ToArray();
+        var patternByteArray = tempArray.ToArray();
 
-        int moduleSize = GTA5Process.MainModule.ModuleMemorySize;
+        var moduleSize = GTA5Process.MainModule.ModuleMemorySize;
         if (moduleSize == 0) throw new Exception($"模块 {GTA5Process.MainModule.ModuleName} 大小无效");
 
-        byte[] localModulebytes = new byte[moduleSize];
+        var localModulebytes = new byte[moduleSize];
         Win32.ReadProcessMemory(GTA5ProHandle, GTA5ProBaseAddress, localModulebytes, moduleSize, out _);
 
         for (int indexAfterBase = 0; indexAfterBase < localModulebytes.Length; indexAfterBase++)
@@ -246,7 +246,7 @@ public static class GTA5Mem
     {
         if (offset != null)
         {
-            byte[] buffer = new byte[8];
+            var buffer = new byte[8];
             Win32.ReadProcessMemory(GTA5ProHandle, pointer, buffer, buffer.Length, out _);
 
             for (int i = 0; i < (offset.Length - 1); i++)
@@ -269,7 +269,7 @@ public static class GTA5Mem
     /// <returns></returns>
     public static T Read<T>(long address) where T : struct
     {
-        byte[] buffer = new byte[Marshal.SizeOf(typeof(T))];
+        var buffer = new byte[Marshal.SizeOf(typeof(T))];
         Win32.ReadProcessMemory(GTA5ProHandle, address, buffer, buffer.Length, out _);
         return ByteArrayToStructure<T>(buffer);
     }
@@ -282,7 +282,7 @@ public static class GTA5Mem
     /// <param name="offsets"></param>
     public static T Read<T>(long basePtr, int[] offsets) where T : struct
     {
-        byte[] buffer = new byte[Marshal.SizeOf(typeof(T))];
+        var buffer = new byte[Marshal.SizeOf(typeof(T))];
         Win32.ReadProcessMemory(GTA5ProHandle, GetPtrAddress(basePtr, offsets), buffer, buffer.Length, out _);
         return ByteArrayToStructure<T>(buffer);
     }
@@ -296,7 +296,7 @@ public static class GTA5Mem
     /// <param name="value"></param>
     public static void Write<T>(long address, T value) where T : struct
     {
-        byte[] buffer = StructureToByteArray(value);
+        var buffer = StructureToByteArray(value);
         Win32.WriteProcessMemory(GTA5ProHandle, address, buffer, buffer.Length, out _);
     }
 
@@ -308,7 +308,7 @@ public static class GTA5Mem
     /// <param name="value"></param>
     public static void Write<T>(long basePtr, int[] offsets, T value) where T : struct
     {
-        byte[] buffer = StructureToByteArray(value);
+        var buffer = StructureToByteArray(value);
         Win32.WriteProcessMemory(GTA5ProHandle, GetPtrAddress(basePtr, offsets), buffer, buffer.Length, out _);
     }
 
@@ -360,14 +360,14 @@ public static class GTA5Mem
     /// <returns></returns>
     public static string ReadString(long basePtr, int[] offsets, int size)
     {
-        byte[] buffer = new byte[size];
+        var buffer = new byte[size];
         Win32.ReadProcessMemory(GTA5ProHandle, GetPtrAddress(basePtr, offsets), buffer, size, out _);
 
         for (int i = 0; i < buffer.Length; i++)
         {
             if (buffer[i] == 0)
             {
-                byte[] _buffer = new byte[i];
+                var _buffer = new byte[i];
                 Buffer.BlockCopy(buffer, 0, _buffer, 0, i);
                 return Encoding.UTF8.GetString(_buffer);
             }
@@ -384,7 +384,7 @@ public static class GTA5Mem
     /// <param name="str"></param>
     public static void WriteString(long basePtr, int[] offsets, string str)
     {
-        byte[] buffer = new ASCIIEncoding().GetBytes(str);
+        var buffer = new ASCIIEncoding().GetBytes(str);
         Win32.WriteProcessMemory(GTA5ProHandle, GetPtrAddress(basePtr, offsets), buffer, buffer.Length, out _);
     }
 
@@ -396,7 +396,7 @@ public static class GTA5Mem
     /// <returns></returns>
     public static byte[] ReadBytes(long basePtr, int size)
     {
-        byte[] buffer = new byte[size];
+        var buffer = new byte[size];
 
         Win32.ReadProcessMemory(GTA5ProHandle, basePtr, buffer, size, out _);
         return buffer;
@@ -453,8 +453,8 @@ public static class GTA5Mem
     /// <returns></returns>
     private static byte[] StructureToByteArray(object obj)
     {
-        int length = Marshal.SizeOf(obj);
-        byte[] array = new byte[length];
+        var length = Marshal.SizeOf(obj);
+        var array = new byte[length];
         IntPtr pointer = Marshal.AllocHGlobal(length);
         Marshal.StructureToPtr(obj, pointer, true);
         Marshal.Copy(pointer, array, 0, length);
@@ -475,7 +475,7 @@ public static class GTA5Mem
             throw new ArgumentException();
         }
 
-        float[] floats = new float[bytes.Length / 4];
+        var floats = new float[bytes.Length / 4];
         for (int i = 0; i < floats.Length; i++)
         {
             floats[i] = BitConverter.ToSingle(bytes, i * 4);

@@ -28,6 +28,9 @@ public partial class ModulesView : UserControl
     private readonly ExternalOverlayView ExternalOverlayView = new();
     private readonly SessionChatView SessionChatView = new();
     private readonly JobHelperView JobHelperView = new();
+    private readonly OutfitsEditView OutfitsEditView = new();
+    private readonly StatScriptsView StatScriptsView = new();
+    private readonly HeistCutView HeistCutView = new();
 
     public ModulesView()
     {
@@ -56,6 +59,9 @@ public partial class ModulesView : UserControl
         MenuBars.Add(new MenuBar() { Emoji = "🍈", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
         MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "战局聊天", NameSpace = "SessionChatView" });
         MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "任务帮手", NameSpace = "JobHelperView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🚗", Title = "服装编辑", NameSpace = "OutfitsEditView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🚙", Title = "STAT脚本", NameSpace = "StatScriptsView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🚌", Title = "抢劫分红", NameSpace = "HeistCutView" });
     }
 
     /// <summary>
@@ -95,6 +101,15 @@ public partial class ModulesView : UserControl
                 break;
             case "JobHelperView":
                 ContentControl_Main.Content = JobHelperView;
+                break;
+            case "OutfitsEditView":
+                ContentControl_Main.Content = OutfitsEditView;
+                break;
+            case "StatScriptsView":
+                ContentControl_Main.Content = StatScriptsView;
+                break;
+            case "HeistCutView":
+                ContentControl_Main.Content = HeistCutView;
                 break;
         }
     }
