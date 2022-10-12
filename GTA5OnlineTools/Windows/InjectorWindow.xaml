@@ -1,13 +1,97 @@
-﻿<Window
+﻿<ui:UiWindow
     x:Class="GTA5OnlineTools.Windows.InjectorWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:GTA5OnlineTools.Windows"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    Title="InjectorWindow"
+    xmlns:ui="http://crazyzhang.cn/ui/2022/xaml"
+    x:Name="Window_Injector"
+    Title="GTA5线上小助手 基础DLL注入器"
     Width="800"
     Height="450"
+    Closing="Window_Injector_Closing"
+    Loaded="Window_Injector_Loaded"
+    ResizeMode="CanMinimize"
+    Style="{StaticResource UiWindowStyle}"
     mc:Ignorable="d">
-    <Grid />
-</Window>
+
+    <ui:UiWindow.TitleContent>
+        <StackPanel
+            VerticalAlignment="Center"
+            DockPanel.Dock="Left"
+            Orientation="Horizontal">
+            <Image
+                Height="20"
+                Margin="5"
+                Source="\Assets\Images\Favicon.ico"
+                Style="{StaticResource ImageStyle_HighQuality}" />
+            <TextBlock
+                VerticalAlignment="Center"
+                FontSize="14"
+                FontWeight="Bold"
+                Text="{Binding ElementName=Window_Injector, Path=Title}" />
+        </StackPanel>
+    </ui:UiWindow.TitleContent>
+
+    <DockPanel LastChildFill="True">
+        <DockPanel
+            Margin="5,5,5,0"
+            DockPanel.Dock="Top"
+            LastChildFill="True">
+            <TextBlock VerticalAlignment="Center" Text="DLL路径" />
+            <ui:UiButtonEmoji
+                x:Name="Button_Inject"
+                Margin="0"
+                Click="Button_Inject_Click"
+                Content="注入"
+                DockPanel.Dock="Right"
+                Emoji="💉" />
+            <ui:UiTextBoxHint
+                x:Name="TextBox_DLLPath"
+                Hint="双击我选择DLL文件路径"
+                IsReadOnly="True"
+                MouseDoubleClick="TextBox_DLLPath_MouseDoubleClick" />
+        </DockPanel>
+        <!--  ##########  -->
+        <DockPanel DockPanel.Dock="Top" LastChildFill="False">
+            <CheckBox
+                x:Name="CheckBox_OnlyShowWindowProcess"
+                Click="CheckBox_OnlyShowWindowProcess_Click"
+                Content="仅显示带窗口进程" />
+            <TextBlock
+                x:Name="TextBlock_Status"
+                Margin="5"
+                VerticalAlignment="Center"
+                DockPanel.Dock="Right"
+                Foreground="Green"
+                Text="等待用户操作..." />
+        </DockPanel>
+        <!--  ##########  -->
+        <DataGrid
+            x:Name="DataGrid_Process"
+            Margin="5"
+            DockPanel.Dock="Bottom"
+            ItemsSource="{Binding ProcessLists}"
+            SelectionChanged="DataGrid_Process_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding PID}"
+                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
+                    Header="PID" />
+                <DataGridTextColumn
+                    Binding="{Binding PName}"
+                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
+                    Header="进程名称" />
+                <DataGridTextColumn
+                    Binding="{Binding MWindowTitle}"
+                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
+                    Header="进程主窗口名称" />
+                <DataGridTextColumn
+                    Binding="{Binding MWindowHandle}"
+                    ElementStyle="{StaticResource DataGridTextColumnStyle_C1}"
+                    Header="进程主窗口句柄" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </DockPanel>
+
+</ui:UiWindow>

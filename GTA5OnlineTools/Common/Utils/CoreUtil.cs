@@ -36,6 +36,25 @@ public static class CoreUtil
     public static UpdateInfo UpdateInfo { get; set; } = null;
 
     /// <summary>
+    /// 正在更新时的文件名
+    /// </summary>
+    public const string HalfwayAppName = "未下载完的小助手更新文件.exe";
+
+    /// <summary>
+    /// 固定下载更新地址
+    /// </summary>
+    public static string UpdateAddress = "https://github.com/CrazyZhang666/GTA5OnlineTools/releases/download/update/GTA5OnlineTools.exe";
+
+    /// <summary>
+    /// 更新完成后的文件名
+    /// </summary>
+    /// <returns></returns>
+    public static string FinalAppName()
+    {
+        return MainAppWindowName + ServerVersion + ".exe";
+    }
+
+    /// <summary>
     /// 计算时间差，即软件运行时间
     /// </summary>
     public static string ExecDateDiff(DateTime dateBegin, DateTime dateEnd)
