@@ -126,24 +126,23 @@
                         Text="坐标名称" />
                     <TextBox x:Name="TextBox_Position_Name" />
                 </DockPanel>
+                <WrapPanel>
+                    <Button
+                        x:Name="Button_Teleport_AddCustom"
+                        Click="Button_Teleport_AddCustom_Click"
+                        Content="添加当前位置" />
+                    <Button
+                        x:Name="Button_Teleport_EditCustom"
+                        Click="Button_Teleport_EditCustom_Click"
+                        Content="修改选中数据" />
+                    <Button
+                        x:Name="Button_Teleport_DeleteCustom"
+                        Click="Button_Teleport_DeleteCustom_Click"
+                        Content="删除选中数据" />
+                </WrapPanel>
             </StackPanel>
 
             <ui:UiLabelEmoji Content="自定义传送" />
-            <WrapPanel Margin="5,0,5,0">
-                <Button
-                    x:Name="Button_Teleport_AddCustom"
-                    Click="Button_Teleport_AddCustom_Click"
-                    Content="添加当前位置" />
-                <Button
-                    x:Name="Button_Teleport_EditCustom"
-                    Click="Button_Teleport_EditCustom_Click"
-                    Content="修改选中数据" />
-                <Button
-                    x:Name="Button_Teleport_DeleteCustom"
-                    Click="Button_Teleport_DeleteCustom_Click"
-                    Content="删除选中数据" />
-            </WrapPanel>
-            <!--  ##########  -->
             <UniformGrid Margin="5,0,5,0" Columns="2">
                 <Button
                     x:Name="Button_ToWaypoint"

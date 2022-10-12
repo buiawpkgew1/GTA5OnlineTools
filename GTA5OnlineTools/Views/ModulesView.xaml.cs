@@ -26,6 +26,8 @@ public partial class ModulesView : UserControl
     private readonly SpawnVehicleView SpawnVehicleView = new();
     private readonly SpawnWeaponView SpawnWeaponView = new();
     private readonly ExternalOverlayView ExternalOverlayView = new();
+    private readonly SessionChatView SessionChatView = new();
+    private readonly JobHelperView JobHelperView = new();
 
     public ModulesView()
     {
@@ -46,12 +48,14 @@ public partial class ModulesView : UserControl
     private void CreateMenuBar()
     {
         MenuBars.Add(new MenuBar() { Emoji = "🍎", Title = "自身属性", NameSpace = "SelfStateView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍊", Title = "世界功能", NameSpace = "WorldFunctionView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "线上选项", NameSpace = "OnlineOptionView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "玩家列表", NameSpace = "PlayerListView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "线上载具", NameSpace = "SpawnVehicleView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "线上武器", NameSpace = "SpawnWeaponView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🍅", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍐", Title = "世界功能", NameSpace = "WorldFunctionView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍋", Title = "线上选项", NameSpace = "OnlineOptionView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍉", Title = "玩家列表", NameSpace = "PlayerListView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍇", Title = "线上载具", NameSpace = "SpawnVehicleView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍓", Title = "线上武器", NameSpace = "SpawnWeaponView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍈", Title = "外部ESP", NameSpace = "ExternalOverlayView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "战局聊天", NameSpace = "SessionChatView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "任务帮手", NameSpace = "JobHelperView" });
     }
 
     /// <summary>
@@ -85,6 +89,12 @@ public partial class ModulesView : UserControl
                 break;
             case "ExternalOverlayView":
                 ContentControl_Main.Content = ExternalOverlayView;
+                break;
+            case "SessionChatView":
+                ContentControl_Main.Content = SessionChatView;
+                break;
+            case "JobHelperView":
+                ContentControl_Main.Content = JobHelperView;
                 break;
         }
     }

@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Common.Helper;
 
 using Downloader;
 
@@ -41,7 +42,7 @@ public partial class UpdateWindow
         }
         catch (Exception ex)
         {
-            MsgBoxUtil.Exception(ex);
+            NotifierHelper.ShowException(ex);
         }
     }
 
@@ -200,7 +201,7 @@ public partial class UpdateWindow
                 }
                 catch (Exception ex)
                 {
-                    MsgBoxUtil.Exception(ex);
+                    NotifierHelper.ShowException(ex);
                 }
             }
         }));
