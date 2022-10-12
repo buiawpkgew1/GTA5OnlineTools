@@ -192,7 +192,25 @@
             </StackPanel>
         </StackPanel>
         <!--  面板4  -->
-        <StackPanel />
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top">
+                <ui:UiLabelEmoji Content="随身技工" />
+                <UniformGrid Margin="5,0,5,0" Columns="2">
+                    <Button
+                        x:Name="Button_RefushPersonalVehicleList"
+                        Click="Button_RefushPersonalVehicleList_Click"
+                        Content="刷新个人载具列表" />
+                    <Button
+                        x:Name="Button_SpawnPersonalVehicle"
+                        Click="Button_SpawnPersonalVehicle_Click"
+                        Content="呼叫个人载具" />
+                </UniformGrid>
+            </StackPanel>
+            <ListBox
+                x:Name="ListBox_PersonalVehicle"
+                Margin="5"
+                DockPanel.Dock="Bottom" />
+        </DockPanel>
     </UniformGrid>
 
 </UserControl>

@@ -14,6 +14,13 @@ public partial class OnlineOptionView : UserControl
         InitializeComponent();
         this.DataContext = this;
         MainWindow.WindowClosingEvent += MainWindow_WindowClosingEvent;
+
+        // Ped列表
+        foreach (var item in PedData.PedDataClass)
+        {
+            ListBox_PedModel.Items.Add(item.DisplayName);
+        }
+        ListBox_PedModel.SelectedIndex = 0;
     }
 
     private void MainWindow_WindowClosingEvent()
@@ -147,5 +154,14 @@ public partial class OnlineOptionView : UserControl
     private void CheckBox_Airstrike_Click(object sender, RoutedEventArgs e)
     {
         Online.CallAirstrike(CheckBox_Airstrike.IsChecked == true);
+    }
+
+    private void Button_ModelChange_Click(object sender, RoutedEventArgs e)
+    {
+        AudioUtil.ClickSound();
+
+        var index = ListBox_PedModel.SelectedIndex;
+        if (index != -1)
+            Online.ModelChange(PedData.PedDataClass[index].Hash);
     }
 }

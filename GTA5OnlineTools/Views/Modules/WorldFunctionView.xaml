@@ -3,7 +3,6 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:emoji="clr-namespace:Emoji.Wpf;assembly=Emoji.Wpf"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:ui="http://crazyzhang.cn/ui/2022/xaml"
     d:DesignHeight="720"
@@ -70,50 +69,103 @@
             </WrapPanel>
         </StackPanel>
         <!--  面板2  -->
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top">
-                <ui:UiLabelEmoji Content="随身技工" />
-                <UniformGrid Margin="5,0,5,0" Columns="2">
-                    <Button
-                        x:Name="Button_RefushPersonalVehicleList"
-                        Click="Button_RefushPersonalVehicleList_Click"
-                        Content="刷新个人载具列表" />
-                    <Button
-                        x:Name="Button_SpawnPersonalVehicle"
-                        Click="Button_SpawnPersonalVehicle_Click"
-                        Content="呼叫个人载具" />
-                </UniformGrid>
-            </StackPanel>
+        <DockPanel LastChildFill="True">
+            <ui:UiLabelEmoji Content="传送分类" DockPanel.Dock="Top" />
             <ListBox
-                x:Name="ListBox_PersonalVehicle"
+                x:Name="ListBox_TeleportClass"
+                Height="200"
                 Margin="5"
-                DockPanel.Dock="Bottom" />
+                DockPanel.Dock="Top"
+                SelectionChanged="ListBox_TeleportClass_SelectionChanged" />
+            <ui:UiLabelEmoji Content="传送列表" DockPanel.Dock="Top" />
+            <ListBox
+                x:Name="ListBox_TeleportInfo"
+                Margin="5"
+                DockPanel.Dock="Bottom"
+                MouseDoubleClick="ListBox_TeleportInfo_MouseDoubleClick"
+                SelectionChanged="ListBox_TeleportInfo_SelectionChanged"
+                ToolTip="双击选中项即可快捷传送" />
         </DockPanel>
         <!--  面板3  -->
-        <DockPanel>
-            <StackPanel DockPanel.Dock="Top">
-                <ui:UiLabelEmoji Content="模型修改" />
-                <StackPanel Margin="5,0,5,0">
-                    <Button
-                        x:Name="Button_ModelChange"
-                        Click="Button_ModelChange_Click"
-                        Content="⚠ 修改线上角色模型">
-                        <Button.ToolTip>
-                            <TextBlock>
-                                1. 此功能仅供尝鲜使用，部分人物模型显示怪异<LineBreak />
-                                2. 如果人物没有刷出来，请多尝试几次<LineBreak />
-                                3. 刷出的人物没有武器，可以拾取地上掉落武器<LineBreak />
-                                4. 人物死亡复活后会变透明，重新刷人物即可<LineBreak />
-                                5. 如果要恢复线上角色，请切换战局或者回到故事模式然后重新进入线上</TextBlock>
-                        </Button.ToolTip>
-                    </Button>
-                </StackPanel>
+        <StackPanel>
+            <ui:UiLabelEmoji Content="坐标数据" />
+            <StackPanel Margin="5,0,5,0">
+                <!--  X坐标  -->
+                <DockPanel>
+                    <TextBlock
+                        Width="60"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="X坐标" />
+                    <TextBox x:Name="TextBox_Position_X" />
+                </DockPanel>
+                <!--  Y坐标  -->
+                <DockPanel>
+                    <TextBlock
+                        Width="60"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="Y坐标" />
+                    <TextBox x:Name="TextBox_Position_Y" />
+                </DockPanel>
+                <!--  Z坐标  -->
+                <DockPanel>
+                    <TextBlock
+                        Width="60"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="Z坐标" />
+                    <TextBox x:Name="TextBox_Position_Z" />
+                </DockPanel>
+                <!--  坐标名称  -->
+                <DockPanel>
+                    <TextBlock
+                        Width="60"
+                        Margin="5,0,0,0"
+                        VerticalAlignment="Center"
+                        Text="坐标名称" />
+                    <TextBox x:Name="TextBox_Position_Name" />
+                </DockPanel>
             </StackPanel>
-            <ListBox
-                x:Name="ListBox_PedModel"
-                Margin="5"
-                DockPanel.Dock="Bottom" />
-        </DockPanel>
+
+            <ui:UiLabelEmoji Content="自定义传送" />
+            <WrapPanel Margin="5,0,5,0">
+                <Button
+                    x:Name="Button_Teleport_AddCustom"
+                    Click="Button_Teleport_AddCustom_Click"
+                    Content="添加当前位置" />
+                <Button
+                    x:Name="Button_Teleport_EditCustom"
+                    Click="Button_Teleport_EditCustom_Click"
+                    Content="修改选中数据" />
+                <Button
+                    x:Name="Button_Teleport_DeleteCustom"
+                    Click="Button_Teleport_DeleteCustom_Click"
+                    Content="删除选中数据" />
+            </WrapPanel>
+            <!--  ##########  -->
+            <UniformGrid Margin="5,0,5,0" Columns="2">
+                <Button
+                    x:Name="Button_ToWaypoint"
+                    Click="Button_ToWaypoint_Click"
+                    Content="传送到导航点" />
+                <Button
+                    x:Name="Button_ToObjective"
+                    Click="Button_ToObjective_Click"
+                    Content="传送到目标点" />
+                <Button
+                    x:Name="Button_Teleport"
+                    Click="Button_Teleport_Click"
+                    Content="传送到选中位置" />
+                <Button
+                    x:Name="Button_Teleport_SaveCustom"
+                    Click="Button_Teleport_SaveCustom_Click"
+                    Content="保存自定义传送数据" />
+            </UniformGrid>
+
+        </StackPanel>
+        <!--  面板4  -->
+
     </UniformGrid>
 
 </UserControl>
