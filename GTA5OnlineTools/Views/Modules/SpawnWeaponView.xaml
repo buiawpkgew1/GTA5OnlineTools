@@ -9,6 +9,113 @@
     d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <Grid />
+    <UniformGrid Columns="4">
+        <!--  面板1  -->
+        <DockPanel LastChildFill="True">
+            <ui:UiLabelEmoji Content="武器分类" DockPanel.Dock="Top" />
+            <ListBox
+                x:Name="ListBox_WeaponList"
+                Height="200"
+                Margin="5"
+                DockPanel.Dock="Top"
+                SelectionChanged="ListBox_WeaponList_SelectionChanged" />
+            <ui:UiLabelEmoji Content="武器列表" DockPanel.Dock="Top" />
+            <ListBox
+                x:Name="ListBox_WeaponInfo"
+                Margin="5"
+                DockPanel.Dock="Bottom"
+                SelectionChanged="ListBox_WeaponInfo_SelectionChanged" />
+        </DockPanel>
+        <!--  面板2  -->
+        <StackPanel>
+            <ui:UiLabelEmoji Content="弹药编辑" />
+            <WrapPanel Margin="5,0,5,0">
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_None"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="默认"
+                    IsChecked="True" />
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_AMMO"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="无限弹药" />
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_CLIP"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="无限弹夹" />
+                <RadioButton
+                    x:Name="RadioButton_AmmoModifier_Both"
+                    Click="RadioButton_AmmoModifier_None_Click"
+                    Content="无限弹药和弹夹" />
+            </WrapPanel>
+
+            <ui:UiLabelEmoji Content="高级" />
+            <StackPanel Margin="5,0,5,0">
+                <CheckBox
+                    x:Name="CheckBox_ReloadMult"
+                    Click="CheckBox_ReloadMult_Click"
+                    Content="快速换弹" />
+            </StackPanel>
+            <WrapPanel Margin="5,0,5,0">
+                <Button
+                    x:Name="Button_NoRecoil"
+                    Click="Button_NoRecoil_Click"
+                    Content="无后坐力" />
+                <Button
+                    x:Name="CheckBox_NoSpread"
+                    Click="CheckBox_NoSpread_Click"
+                    Content="无子弹扩散" />
+                <Button
+                    x:Name="CheckBox_Range"
+                    Click="CheckBox_Range_Click"
+                    Content="提升射程" />
+            </WrapPanel>
+
+            <ui:UiLabelEmoji Content="子弹类型" />
+            <StackPanel Margin="5,0,5,0">
+                <DockPanel LastChildFill="True">
+                    <CheckBox
+                        x:Name="CheckBox_ImpactType"
+                        Click="CheckBox_ImpactType_Click"
+                        Content="启用子弹类型" />
+                    <ComboBox
+                        x:Name="ComboBox_ImpactExplosion"
+                        SelectedIndex="0"
+                        SelectionChanged="ComboBox_ImpactExplosion_SelectionChanged" />
+                </DockPanel>
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    注意：如果你修改的武器和NPC使用的武器一样，那么他们的子弹类型也会一并修改
+                </TextBlock>
+            </StackPanel>
+
+            <ui:UiLabelEmoji Content="快捷功能" />
+            <WrapPanel Margin="5,0,5,0">
+                <Button
+                    x:Name="Button_FillCurrentAmmo"
+                    Click="Button_FillCurrentAmmo_Click"
+                    Content="补满当前武器弹药" />
+                <Button
+                    x:Name="Button_FillAllAmmo"
+                    Click="Button_FillAllAmmo_Click"
+                    Content="补满全部武器弹药" />
+            </WrapPanel>
+
+            <ui:UiLabelEmoji Content="刷出武器" />
+            <StackPanel Margin="5,0,5,0">
+                <Button
+                    x:Name="Button_SpawnWeapon"
+                    Click="Button_SpawnWeapon_Click"
+                    Content="刷出线上武器"
+                    DockPanel.Dock="Bottom" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：部分武器刷不出来是正常现象，请多次尝试
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <!--  面板3  -->
+        <StackPanel />
+        <!--  面板4  -->
+        <StackPanel />
+    </UniformGrid>
 
 </UserControl>

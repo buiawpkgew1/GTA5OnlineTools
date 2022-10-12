@@ -12,7 +12,7 @@
     <UniformGrid Columns="4">
         <!--  面板1  -->
         <GroupBox
-            Margin="5"
+            Margin="5,5,0,5"
             Header="ESP选项"
             Style="{StaticResource GroupBoxStyle_Normal}">
             <StackPanel>
@@ -79,16 +79,18 @@
                     IsChecked="False" />
 
                 <TextBlock />
-                <TextBlock
-                    Margin="5"
-                    Foreground="Green"
-                    Text="提示：★ 代表该功能比较影响绘制帧数"
-                    TextWrapping="Wrap" />
-                <TextBlock
-                    Margin="5"
-                    Foreground="Green"
-                    Text="提示：部分功能改动后需要重新开启ESP功能"
-                    TextWrapping="Wrap" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：★ 代表该功能比较影响绘制帧数
+                </TextBlock>
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：部分功能改动后需要重新开启ESP功能
+                </TextBlock>
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：有时候ESP帧数会过低（游戏内帧数波动大，切到游戏外帧数恢复正常），可能需要重启电脑才能恢复，原因尚不清楚
+                </TextBlock>
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：外部绘图会有性能损失，有时候绘制帧数低也是正常现象
+                </TextBlock>
             </StackPanel>
         </GroupBox>
         <!--  面板2  -->
@@ -222,16 +224,6 @@
                     Click="Button_Overaly_Exit_Click"
                     Content="关闭ESP" />
             </StackPanel>
-            <TextBlock
-                Margin="5"
-                Foreground="Green"
-                Text="提示：有时候ESP帧数会过低（游戏内帧数波动大，切到游戏外帧数恢复正常），可能需要重启电脑才能恢复，原因尚不清楚"
-                TextWrapping="Wrap" />
-            <TextBlock
-                Margin="5"
-                Foreground="Green"
-                Text="提示：外部绘图会有性能损失，有时候绘制帧数低也是正常现象"
-                TextWrapping="Wrap" />
         </StackPanel>
         <!--  面板3  -->
         <StackPanel Margin="5" />

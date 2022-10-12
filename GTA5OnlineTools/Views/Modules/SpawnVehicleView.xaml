@@ -9,6 +9,190 @@
     d:DesignWidth="1280"
     mc:Ignorable="d">
 
-    <Grid />
+    <UniformGrid Columns="4">
+        <!--  面板1  -->
+        <DockPanel LastChildFill="True">
+            <ui:UiLabelEmoji Content="载具分类" DockPanel.Dock="Top" />
+            <ListBox
+                x:Name="ListBox_VehicleClass"
+                Height="200"
+                Margin="5"
+                DockPanel.Dock="Top"
+                SelectionChanged="ListBox_VehicleClass_SelectionChanged" />
+            <ui:UiLabelEmoji Content="载具列表" DockPanel.Dock="Top" />
+            <ListBox
+                x:Name="ListBox_VehicleInfo"
+                Margin="5"
+                DockPanel.Dock="Bottom"
+                SelectionChanged="ListBox_VehicleInfo_SelectionChanged" />
+        </DockPanel>
+        <!--  面板2  -->
+        <StackPanel>
+            <ui:UiLabelEmoji Content="一般选项" />
+            <StackPanel>
+                <WrapPanel Margin="5,0,5,0">
+                    <CheckBox
+                        x:Name="CheckBox_VehicleGodMode"
+                        Click="CheckBox_VehicleGodMode_Click"
+                        Content="载具无敌" />
+                    <CheckBox
+                        x:Name="CheckBox_VehicleSeatbelt"
+                        Click="CheckBox_VehicleSeatbelt_Click"
+                        Content="载具安全带" />
+                    <CheckBox
+                        x:Name="CheckBox_VehicleParachute"
+                        Click="CheckBox_VehicleParachute_Click"
+                        Content="载具降落伞" />
+                    <CheckBox
+                        x:Name="CheckBox_VehicleInvisibility"
+                        Click="CheckBox_VehicleInvisibility_Click"
+                        Content="载具隐身（虚假）" />
+                </WrapPanel>
+                <WrapPanel Margin="5,0,5,0">
+                    <Button
+                        x:Name="Button_FillVehicleHealth"
+                        Click="Button_FillVehicleHealth_Click"
+                        Content="补满载具血量" />
+                </WrapPanel>
+
+                <ui:UiLabelEmoji Content="载具附加功能 ❔" ToolTip="提示：E键-载具跳跃，X键-载具加速" />
+                <WrapPanel Margin="5,0,5,0">
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_None"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="默认"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_Jump"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="跳跃" />
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_Boost"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="加速" />
+                    <RadioButton
+                        x:Name="RadioButton_VehicleExtras_Both"
+                        Click="RadioButton_VehicleExtras_None_Click"
+                        Content="跳跃和加速" />
+                </WrapPanel>
+
+                <ui:UiLabelEmoji Content="高级" />
+                <WrapPanel Margin="5,0,5,0">
+                    <Button
+                        x:Name="Button_RepairVehicle"
+                        Click="Button_RepairVehicle_Click"
+                        Content="修复载具外观"
+                        ToolTip="如果没效果可以多点几下" />
+                    <Button
+                        x:Name="Button_TurnOffBST"
+                        Click="Button_TurnOffBST_Click"
+                        Content="移除牛鲨睾酮效果" />
+                    <Button
+                        x:Name="Button_GetInOnlinePV"
+                        Click="Button_GetInOnlinePV_Click"
+                        Content="坐进个人载具" />
+                    <Button
+                        x:Name="Button_UnlockVehicle161"
+                        Click="Button_UnlockVehicle161_Click"
+                        Content="解锁1.61未发布载具" />
+                </WrapPanel>
+
+            </StackPanel>
+
+            <ui:UiLabelEmoji Content="载具自定义" />
+            <StackPanel Margin="5,0,5,0">
+                <Button
+                    x:Name="Button_SpawnOnlineVehicleA"
+                    Click="Button_SpawnOnlineVehicle_Click"
+                    Content="刷出线上载具（空地）" />
+                <Button
+                    x:Name="Button_SpawnOnlineVehicleB"
+                    Click="Button_SpawnOnlineVehicle_Click"
+                    Content="刷出线上载具（室内）" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：如果载具刷不出，请切换战局，并找一个开阔区域刷
+                </TextBlock>
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    警告：刷出的载具不建议存为个人载具或者进行载具出售，仅可当作临时交通工具使用
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <!--  面板3  -->
+        <StackPanel>
+            <ui:UiLabelEmoji Content="车速表" />
+            <GroupBox
+                Margin="5"
+                Header="车速表位置"
+                Style="{StaticResource GroupBoxStyle_Normal}">
+                <WrapPanel Orientation="Horizontal">
+                    <RadioButton
+                        x:Name="RadioButton_SpeedMeterPos_Center"
+                        Click="RadioButton_SpeedMeterPos_Center_Click"
+                        Content="居中"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_SpeedMeterPos_Right"
+                        Click="RadioButton_SpeedMeterPos_Center_Click"
+                        Content="居右" />
+                </WrapPanel>
+            </GroupBox>
+            <GroupBox
+                Margin="5"
+                Header="车速表单位"
+                Style="{StaticResource GroupBoxStyle_Normal}">
+                <WrapPanel Orientation="Horizontal">
+                    <RadioButton
+                        x:Name="RadioButton_SpeedMeterUnit_MPH"
+                        Click="RadioButton_SpeedMeterUnit_MPH_Click"
+                        Content="MPH（英里每小时）"
+                        IsChecked="True" />
+                    <RadioButton
+                        x:Name="RadioButton_SpeedMeterUnit_KPH"
+                        Click="RadioButton_SpeedMeterUnit_MPH_Click"
+                        Content="KPH（公里每小时）" />
+                </WrapPanel>
+            </GroupBox>
+            <GroupBox
+                Margin="5"
+                Header="调试信息"
+                Style="{StaticResource GroupBoxStyle_Normal}">
+                <StackPanel>
+                    <TextBlock
+                        x:Name="TextBlock_ScreenResolution"
+                        Margin="5"
+                        Text="屏幕分辨率" />
+                    <TextBlock
+                        x:Name="TextBlock_GameResolution"
+                        Margin="5"
+                        Text="游戏分辨率" />
+                    <TextBlock
+                        x:Name="TextBlock_ScreenScale"
+                        Margin="5"
+                        Text="缩放比例" />
+                </StackPanel>
+            </GroupBox>
+            <StackPanel Margin="5,0,5,0">
+                <Button
+                    x:Name="Button_RunDraw"
+                    Click="Button_RunDraw_Click"
+                    Content="启动" />
+                <Button
+                    x:Name="Button_StopDraw"
+                    Click="Button_StopDraw_Click"
+                    Content="停止" />
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：游戏需要无边框或者窗口化才能正常显示，不支持全屏
+                </TextBlock>
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：如果是win7系统，则需要开启Aero特效，否则可能显示不正常，win10及以上版本均可正常显示
+                </TextBlock>
+                <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                    提示：只有坐上载具和GTA5窗口在最前面才会显示车速表，防止遮挡视线
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <!--  面板4  -->
+        <StackPanel />
+    </UniformGrid>
 
 </UserControl>
