@@ -33,7 +33,7 @@ public partial class ToolsView : UserControl
     /// <param name="name"></param>
     private void ToolsButtonClick(string name)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         switch (name)
         {
@@ -174,7 +174,7 @@ public partial class ToolsView : UserControl
     {
         ProcessUtil.CloseProcess("Kiddion");
         ProcessUtil.CloseProcess("Kiddion_Chs");
-        FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.Kiddion_Path + @"config.json");
+        FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.D_Kiddion_Path + @"config.json");
         NotifierHelper.Show(NotifierType.Success, "切换到《Kiddion [104键]》成功");
     }
 
@@ -185,7 +185,7 @@ public partial class ToolsView : UserControl
     {
         ProcessUtil.CloseProcess("Kiddion");
         ProcessUtil.CloseProcess("Kiddion_Chs");
-        FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "key87.config.json", FileUtil.Kiddion_Path + @"config.json");
+        FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "key87.config.json", FileUtil.D_Kiddion_Path + @"config.json");
         NotifierHelper.Show(NotifierType.Success, "切换到《Kiddion [87键]》成功");
     }
 
@@ -194,7 +194,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditKiddionConfigClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.Kiddion_Path + @"config.json");
+        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.D_Kiddion_Path + @"config.json");
     }
 
     /// <summary>
@@ -202,7 +202,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditKiddionTPClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.Kiddion_Path + @"teleports.json");
+        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.D_Kiddion_Path + @"teleports.json");
     }
 
     /// <summary>
@@ -210,7 +210,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditKiddionVCClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.Kiddion_Path + @"vehicles.json");
+        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.D_Kiddion_Path + @"vehicles.json");
     }
 
     /// <summary>
@@ -218,7 +218,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void KiddionScriptsDirectory()
     {
-        ProcessUtil.OpenPath(FileUtil.KiddionScripts_Path);
+        ProcessUtil.OpenPath(FileUtil.D_KiddionScripts_Path);
     }
 
     /// <summary>
@@ -294,7 +294,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditGTAHaxStatClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.GTAHaxStat_Path);
+        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.F_GTAHaxStat_Path);
     }
 
     /// <summary>

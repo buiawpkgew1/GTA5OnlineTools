@@ -125,65 +125,65 @@ public partial class LoadWindow
                 LoggerHelper.Info("正在初始化配置文件...");
 
                 // 清空缓存文件夹
-                if (File.Exists(FileUtil.Cache_Path))
-                    Directory.Delete(FileUtil.Cache_Path, true);
-                Directory.CreateDirectory(FileUtil.Cache_Path);
+                if (File.Exists(FileUtil.D_Cache_Path))
+                    Directory.Delete(FileUtil.D_Cache_Path, true);
+                Directory.CreateDirectory(FileUtil.D_Cache_Path);
 
                 // 创建指定文件夹，用于释放必要文件和更新软件（如果已存在则不会创建）
-                Directory.CreateDirectory(FileUtil.Config_Path);
-                Directory.CreateDirectory(FileUtil.Kiddion_Path);
-                Directory.CreateDirectory(FileUtil.KiddionScripts_Path);
-                Directory.CreateDirectory(FileUtil.Inject_Path);
-                Directory.CreateDirectory(FileUtil.Log_Path);
+                Directory.CreateDirectory(FileUtil.D_Config_Path);
+                Directory.CreateDirectory(FileUtil.D_Kiddion_Path);
+                Directory.CreateDirectory(FileUtil.D_KiddionScripts_Path);
+                Directory.CreateDirectory(FileUtil.D_Inject_Path);
+                Directory.CreateDirectory(FileUtil.D_Log_Path);
 
                 // 释放必要文件
-                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion.exe", FileUtil.Kiddion_Path + "Kiddion.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion_Chs.exe", FileUtil.Kiddion_Path + "Kiddion_Chs.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion.exe", FileUtil.D_Kiddion_Path + "Kiddion.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion_Chs.exe", FileUtil.D_Kiddion_Path + "Kiddion_Chs.exe");
 
                 // 释放前先判断，防止覆盖配置文件
-                if (!File.Exists(FileUtil.Kiddion_Path + "config.json"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.Kiddion_Path + "config.json");
-                if (!File.Exists(FileUtil.Kiddion_Path + "themes.json"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "themes.json", FileUtil.Kiddion_Path + "themes.json");
-                if (!File.Exists(FileUtil.Kiddion_Path + "teleports.json"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "teleports.json", FileUtil.Kiddion_Path + "teleports.json");
-                if (!File.Exists(FileUtil.Kiddion_Path + "vehicles.json"))
-                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "vehicles.json", FileUtil.Kiddion_Path + "vehicles.json");
+                if (!File.Exists(FileUtil.D_Kiddion_Path + "config.json"))
+                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "config.json", FileUtil.D_Kiddion_Path + "config.json");
+                if (!File.Exists(FileUtil.D_Kiddion_Path + "themes.json"))
+                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "themes.json", FileUtil.D_Kiddion_Path + "themes.json");
+                if (!File.Exists(FileUtil.D_Kiddion_Path + "teleports.json"))
+                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "teleports.json", FileUtil.D_Kiddion_Path + "teleports.json");
+                if (!File.Exists(FileUtil.D_Kiddion_Path + "vehicles.json"))
+                    FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "vehicles.json", FileUtil.D_Kiddion_Path + "vehicles.json");
 
                 // Kiddion Lua脚本
-                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "scripts.Readme.api", FileUtil.KiddionScripts_Path + "Readme.api");
+                FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "scripts.Readme.api", FileUtil.D_KiddionScripts_Path + "Readme.api");
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "GTAHax.exe", FileUtil.Cache_Path + "GTAHax.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "stat.txt", FileUtil.Cache_Path + "stat.txt");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "BincoHax.exe", FileUtil.Cache_Path + "BincoHax.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "LSCHax.exe", FileUtil.Cache_Path + "LSCHax.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "GTAHax.exe", FileUtil.D_Cache_Path + "GTAHax.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "stat.txt", FileUtil.D_Cache_Path + "stat.txt");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "BincoHax.exe", FileUtil.D_Cache_Path + "BincoHax.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "LSCHax.exe", FileUtil.D_Cache_Path + "LSCHax.exe");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.exe", FileUtil.Cache_Path + "dControl.exe");
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.ini", FileUtil.Cache_Path + "dControl.ini");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.exe", FileUtil.D_Cache_Path + "dControl.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.ini", FileUtil.D_Cache_Path + "dControl.ini");
 
-                FileUtil.ExtractResFile(FileUtil.Resource_Path + "GetKidTxt.exe", FileUtil.Cache_Path + "GetKidTxt.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "GetKidTxt.exe", FileUtil.D_Cache_Path + "GetKidTxt.exe");
 
                 // 判断DLL文件是否存在以及是否被占用
-                if (!File.Exists(FileUtil.Inject_Path + "YimMenu.dll"))
+                if (!File.Exists(FileUtil.D_Inject_Path + "YimMenu.dll"))
                 {
-                    FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "YimMenu.dll", FileUtil.Inject_Path + "YimMenu.dll");
+                    FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "YimMenu.dll", FileUtil.D_Inject_Path + "YimMenu.dll");
                 }
                 else
                 {
-                    if (!FileUtil.IsOccupied(FileUtil.Inject_Path + "YimMenu.dll"))
-                        FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "YimMenu.dll", FileUtil.Inject_Path + "YimMenu.dll");
+                    if (!FileUtil.IsOccupied(FileUtil.D_Inject_Path + "YimMenu.dll"))
+                        FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "YimMenu.dll", FileUtil.D_Inject_Path + "YimMenu.dll");
                 }
 
-                if (!File.Exists(FileUtil.Inject_Path + "BlcokMsg.dll"))
+                if (!File.Exists(FileUtil.D_Inject_Path + "BlcokMsg.dll"))
                 {
-                    FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "BlcokMsg.dll", FileUtil.Inject_Path + "BlcokMsg.dll");
+                    FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "BlcokMsg.dll", FileUtil.D_Inject_Path + "BlcokMsg.dll");
                 }
                 else
                 {
-                    if (!FileUtil.IsOccupied(FileUtil.Inject_Path + "BlcokMsg.dll"))
-                        FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "BlcokMsg.dll", FileUtil.Inject_Path + "BlcokMsg.dll");
+                    if (!FileUtil.IsOccupied(FileUtil.D_Inject_Path + "BlcokMsg.dll"))
+                        FileUtil.ExtractResFile(FileUtil.Resource_Inject_Path + "BlcokMsg.dll", FileUtil.D_Inject_Path + "BlcokMsg.dll");
                 }
 
                 ///////////////////////////////////////////////////////////////////////////////////////////////////////

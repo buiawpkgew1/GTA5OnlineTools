@@ -25,11 +25,11 @@ public partial class SessionChatView : UserControl
         TextBox_InputMessage.Text = "测试文本: 请把游戏中聊天输入法调成英文,否则会漏掉文字.Hello1234,漏掉文字了吗?";
         ReadPlayerName();
 
-        if (File.Exists(FileUtil.BlockWords_Path))
+        if (File.Exists(FileUtil.F_BlockWords_Path))
         {
             try
             {
-                var file = new StreamReader(FileUtil.BlockWords_Path, Encoding.Default);
+                var file = new StreamReader(FileUtil.F_BlockWords_Path, Encoding.Default);
                 string content = string.Empty;
                 while (content != null)
                 {
@@ -57,7 +57,7 @@ public partial class SessionChatView : UserControl
 
     private void Button_Translate_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         try
         {
@@ -92,7 +92,7 @@ public partial class SessionChatView : UserControl
 
     private void Button_SendTextToGTA5_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         try
         {
@@ -221,14 +221,14 @@ public partial class SessionChatView : UserControl
 
     private void Button_ReadPlayerName_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         ReadPlayerName();
     }
 
     private void Button_WritePlayerName_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         if (TextBox_OnlineList.Text != "" &&
             TextBox_ChatName.Text != "" &&
@@ -264,7 +264,7 @@ public partial class SessionChatView : UserControl
     #region 战局垃圾信息拦截
     private void Button_AddBlcokWords_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var txt = TextBox_InputBlcokWord.Text;
         if (!string.IsNullOrEmpty(txt))
@@ -286,7 +286,7 @@ public partial class SessionChatView : UserControl
 
     private void Button_RemoveBlcokWords_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var index = ListBox_BlcokWords.SelectedIndex;
         if (index != -1)
@@ -298,11 +298,11 @@ public partial class SessionChatView : UserControl
 
     private void Button_InjectGTA5Process_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         SaveBlcokWords();
 
-        var _DLLPath = FileUtil.Inject_Path + "BlcokMsg.dll";
+        var _DLLPath = FileUtil.D_Inject_Path + "BlcokMsg.dll";
 
         if (!File.Exists(_DLLPath))
         {
@@ -333,7 +333,7 @@ public partial class SessionChatView : UserControl
 
     private void Button_SaveBlcokWords_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         SaveBlcokWords();
     }
@@ -342,7 +342,7 @@ public partial class SessionChatView : UserControl
     {
         try
         {
-            using var fs = new FileStream(FileUtil.BlockWords_Path, FileMode.Create);
+            using var fs = new FileStream(FileUtil.F_BlockWords_Path, FileMode.Create);
             using var sw = new StreamWriter(fs, Encoding.Default);
             for (int i = 0; i < ListBox_BlcokWords.Items.Count; i++)
             {
@@ -360,7 +360,7 @@ public partial class SessionChatView : UserControl
 
     private void Button_DefaultBlcokWords_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         DefaultBlcokWords();
     }

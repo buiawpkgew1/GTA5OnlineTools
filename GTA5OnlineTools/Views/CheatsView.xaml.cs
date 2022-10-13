@@ -75,7 +75,7 @@ public partial class CheatsView : UserControl
     /// <param name="hackName"></param>
     private void CheatsClick(string hackName)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         switch (hackName)
         {
@@ -103,7 +103,7 @@ public partial class CheatsView : UserControl
     /// <param name="pageName"></param>
     private void ReadMeClick(string pageName)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         switch (pageName)
         {
@@ -136,15 +136,15 @@ public partial class CheatsView : UserControl
     /// <param name="path"></param>
     private void PathClick(string path)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         switch (path)
         {
             case "KiddionConfigFolder":
-                ProcessUtil.OpenPath(FileUtil.Kiddion_Path);
+                ProcessUtil.OpenPath(FileUtil.D_Kiddion_Path);
                 break;
             case "GTAHaxStatFile":
-                ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.GTAHaxStat_Path);
+                ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.F_GTAHaxStat_Path);
                 break;
             case "YimMenuConfigFolder":
                 ProcessUtil.OpenPath(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");
@@ -263,7 +263,7 @@ public partial class CheatsView : UserControl
     /// </summary>
     private void YimMenuClick()
     {
-        var _DLLPath = FileUtil.Inject_Path + "YimMenu.dll";
+        var _DLLPath = FileUtil.D_Inject_Path + "YimMenu.dll";
 
         if (!File.Exists(_DLLPath))
         {

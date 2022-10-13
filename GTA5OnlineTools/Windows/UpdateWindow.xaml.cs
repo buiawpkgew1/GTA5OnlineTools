@@ -79,7 +79,7 @@ public partial class UpdateWindow
     /// <param name="e"></param>
     private void Button_Update_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Button_Update.IsEnabled = false;
         Button_CancelUpdate.IsEnabled = true;
@@ -113,7 +113,7 @@ public partial class UpdateWindow
     /// <param name="e"></param>
     private void Button_CancelUpdate_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         downloader.CancelAsync();
         downloader.Clear();

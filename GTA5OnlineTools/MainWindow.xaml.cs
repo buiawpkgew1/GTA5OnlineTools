@@ -3,6 +3,7 @@ using GTA5OnlineTools.Models;
 using GTA5OnlineTools.Windows;
 using GTA5OnlineTools.Features;
 using GTA5OnlineTools.Features.Core;
+using GTA5OnlineTools.Features.Data;
 using GTA5OnlineTools.Common.Data;
 using GTA5OnlineTools.Common.Utils;
 using GTA5OnlineTools.Common.Helper;
@@ -11,8 +12,6 @@ using RestSharp;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Hardcodet.Wpf.TaskbarNotification;
-using GTA5OnlineTools.Features.Data;
-using System;
 
 namespace GTA5OnlineTools;
 
@@ -400,7 +399,7 @@ public partial class MainWindow
         {
             //Show();
             WindowState = WindowState.Normal;
-            Focus();
+            this.Focus();
 
             if (CheckBox_IsTopMost.IsChecked == false)
             {
@@ -409,7 +408,6 @@ public partial class MainWindow
             }
 
             Win32.SetCursorPos(MainWinPOINT.X, MainWinPOINT.Y);
-
             Win32.SetForegroundWindow(MainWinHandle);
         }
         else
@@ -418,7 +416,6 @@ public partial class MainWindow
             WindowState = WindowState.Minimized;
 
             Win32.GetCursorPos(out MainWinPOINT);
-
             GTA5Mem.SetForegroundWindow();
         }
     }

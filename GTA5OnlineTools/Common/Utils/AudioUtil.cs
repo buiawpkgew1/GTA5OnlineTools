@@ -13,16 +13,16 @@ public static class AudioUtil
     public static SoundPlayer SP_DownloadOK = new(Properties.Resources.DownloadOK);
 
     /// <summary>
-    /// 按钮提示音
+    /// 点击提示音索引
     /// </summary>
-    public static int ClickSoundIndex = 4;
+    public static int ClickAudioIndex = 4;
 
     /// <summary>
-    /// 按钮点击音效
+    /// 播放点击音效
     /// </summary>
-    public static void ClickSound()
+    public static void PlayClickSound()
     {
-        switch (ClickSoundIndex)
+        switch (ClickAudioIndex)
         {
             case 0:
                 break;

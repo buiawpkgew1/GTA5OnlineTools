@@ -30,7 +30,7 @@ public partial class OnlineOptionView : UserControl
 
     private void Button_Sessions_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var str = (e.OriginalSource as Button).Content.ToString();
         var index = MiscData.Sessions.FindIndex(t => t.Name == str);
@@ -40,14 +40,14 @@ public partial class OnlineOptionView : UserControl
 
     private void Button_EmptySession_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Online.EmptySession();
     }
 
     private void Button_RPxN_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var str = (e.OriginalSource as Button).Content.ToString();
         var index = MiscData.RPxNs.FindIndex(t => t.Name == str);
@@ -57,7 +57,7 @@ public partial class OnlineOptionView : UserControl
 
     private void Button_REPxN_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var str = (e.OriginalSource as Button).Content.ToString();
         var index = MiscData.REPxNs.FindIndex(t => t.Name == str);
@@ -117,7 +117,7 @@ public partial class OnlineOptionView : UserControl
 
     private void Button_Blips_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var str = (e.OriginalSource as Button).Content.ToString();
 
@@ -130,7 +130,7 @@ public partial class OnlineOptionView : UserControl
 
     private void Button_MerryweatherServices_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var str = (e.OriginalSource as Button).Content.ToString();
 
@@ -158,7 +158,7 @@ public partial class OnlineOptionView : UserControl
 
     private void Button_ModelChange_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var index = ListBox_PedModel.SelectedIndex;
         if (index != -1)

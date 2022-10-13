@@ -63,7 +63,7 @@ public partial class SpawnWeaponView : UserControl
 
     private void Button_SpawnWeapon_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Hacks.CreateAmbientPickup(TempData.WPickup);
     }
@@ -97,21 +97,21 @@ public partial class SpawnWeaponView : UserControl
 
     private void Button_NoRecoil_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Weapon.NoRecoil();
     }
 
     private void CheckBox_NoSpread_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Weapon.NoSpread();
     }
 
     private void CheckBox_Range_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Weapon.Range();
     }
@@ -139,14 +139,14 @@ public partial class SpawnWeaponView : UserControl
 
     private void Button_FillCurrentAmmo_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Weapon.FillCurrentAmmo();
     }
 
     private void Button_FillAllAmmo_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Weapon.FillAllAmmo();
     }

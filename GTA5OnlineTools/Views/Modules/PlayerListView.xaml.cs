@@ -54,7 +54,7 @@ public partial class PlayerListView : UserControl
 
     private void Button_RefreshPlayerList_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         playerData.Clear();
         ListBox_PlayerList.Items.Clear();
@@ -116,7 +116,7 @@ public partial class PlayerListView : UserControl
 
     private void Button_TeleportSelectedPlayer_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         if (ListBox_PlayerList.SelectedItem != null)
         {

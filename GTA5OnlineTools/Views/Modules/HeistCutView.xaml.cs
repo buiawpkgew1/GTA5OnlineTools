@@ -25,7 +25,7 @@ public partial class HeistCutView : UserControl
 
     private void Button_Read_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         ReadHeistCutData();
     }
@@ -129,7 +129,7 @@ public partial class HeistCutView : UserControl
     /// <param name="e"></param>
     private void Button_Write_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         try
         {

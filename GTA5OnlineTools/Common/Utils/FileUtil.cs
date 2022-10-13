@@ -7,19 +7,20 @@ public static class FileUtil
     /// </summary>
     public const string Default_Path = @"C:\ProgramData\GTA5OnlineTools\";
 
-    public const string Kiddion_Path = Default_Path + @"Kiddion\";
-    public const string KiddionScripts_Path = Kiddion_Path + @"scripts\";
+    public const string D_Kiddion_Path = Default_Path + @"Kiddion\";
+    public const string D_Cache_Path = Default_Path + @"Cache\";
+    public const string D_Config_Path = Default_Path + @"Config\";
+    public const string D_Inject_Path = Default_Path + @"Inject\";
+    public const string D_Log_Path = Default_Path + @"Log\";
 
-    public const string Cache_Path = Default_Path + @"Cache\";
-    public const string GTAHaxStat_Path = Cache_Path + @"stat.txt";
+    public const string D_KiddionScripts_Path = D_Kiddion_Path + @"scripts\";
 
-    public const string Config_Path = Default_Path + @"Config\";
-    public static string CustomTPList_Path = Config_Path + "CustomTPList.json";
-    public static string BlockWords_Path = Config_Path + "BlockWords.txt";
+    public const string F_GTAHaxStat_Path = D_Cache_Path + "stat.txt";
 
-    public const string Inject_Path = Default_Path + @"Inject\";
+    public static string F_Option_Path = D_Config_Path +"OptionConfig.json";
 
-    public const string Log_Path = Default_Path + @"Log\";
+    public static string F_BlockWords_Path = D_Config_Path + "BlockWords.txt";
+    public static string F_CustomTPList_Path = D_Config_Path + "CustomTPList.json";
 
     public const string Resource_Path = "GTA5OnlineTools.Features.Files.";
     public const string Resource_Kiddion_Path = "GTA5OnlineTools.Features.Files.Kiddion.";
@@ -116,7 +117,7 @@ public static class FileUtil
     /// <param name="logContent">保存内容</param>
     public static void SaveErrorLog(string logContent)
     {
-        var path = Log_Path + "ErrorLog";
+        var path = D_Log_Path + "ErrorLog";
         Directory.CreateDirectory(path);
         path += $@"\#ErrorLog# {DateTime.Now:yyyyMMdd_HH-mm-ss_ffff}.log";
         File.WriteAllText(path, logContent);

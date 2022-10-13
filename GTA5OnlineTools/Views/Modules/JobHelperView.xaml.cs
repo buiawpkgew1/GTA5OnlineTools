@@ -53,7 +53,7 @@ public partial class JobHelperView : UserControl
 
     private void Button_CEOCargos_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var str = (e.OriginalSource as Button).Content.ToString();
 

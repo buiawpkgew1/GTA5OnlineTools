@@ -86,7 +86,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void Button_SpawnOnlineVehicle_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         string str = (e.OriginalSource as Button).Content.ToString();
 
@@ -128,7 +128,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void Button_FillVehicleHealth_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Vehicle.FillHealth();
     }
@@ -155,28 +155,28 @@ public partial class SpawnVehicleView : UserControl
 
     private void Button_RepairVehicle_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Vehicle.Fix1stfoundBST();
     }
 
     private void Button_TurnOffBST_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Online.InstantBullShark(false);
     }
 
     private void Button_GetInOnlinePV_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Online.GetInOnlinePV();
     }
 
     private void Button_UnlockVehicle161_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Hacks.WriteGA<int>(262145 + 33034, 1);        // Benefactor SM722                 - 33034
         Hacks.WriteGA<int>(262145 + 33035, 1);        // Declasse Draugur                 - 33035
@@ -194,7 +194,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void Button_RunDraw_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         GTA5Mem.SetForegroundWindow();
 
@@ -213,7 +213,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void Button_StopDraw_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         if (DrawWindow != null)
         {
@@ -254,7 +254,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void Button_RefushPersonalVehicleList_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         ListBox_PersonalVehicle.Items.Clear();
         pVInfos.Clear();
@@ -291,7 +291,7 @@ public partial class SpawnVehicleView : UserControl
 
     private void Button_SpawnPersonalVehicle_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         int index = ListBox_PersonalVehicle.SelectedIndex;
         if (index != -1)

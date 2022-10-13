@@ -308,35 +308,35 @@ public partial class SelfStateView : UserControl
 
     private void Button_ToWaypoint_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Teleport.ToWaypoint();
     }
 
     private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Teleport.ToObjective();
     }
 
     private void Button_FillHealthArmor_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Player.FillHealthArmor();
     }
 
     private void Button_ClearWanted_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Player.WantedLevel(0x00);
     }
 
     private void Button_Suicide_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Player.Suicide();
     }

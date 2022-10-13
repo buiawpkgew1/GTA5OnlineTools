@@ -17,27 +17,26 @@ public partial class WorldFunctionView : UserControl
         this.DataContext = this;
         MainWindow.WindowClosingEvent += MainWindow_WindowClosingEvent;
 
-        // 读取自定义传送坐标文件
-        try
+        // 如果配置文件不存在就创建
+        if (!File.Exists(FileUtil.F_CustomTPList_Path))
         {
-            using var streamReader = new StreamReader(FileUtil.CustomTPList_Path);
-            List<TeleportData.TeleportInfo> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportInfo>>(streamReader.ReadToEnd());
+            // 保存配置文件
+            SaveConfig();
+        }
 
-            TeleportData.CustomTeleport.Clear();
+        // 如果配置文件存在就读取
+        if (File.Exists(FileUtil.F_CustomTPList_Path))
+        {
+            using var streamReader = new StreamReader(FileUtil.F_CustomTPList_Path);
+            List<TeleportData.TeleportInfo> teleportPreviews = JsonUtil.JsonDese<List<TeleportData.TeleportInfo>>(streamReader.ReadToEnd());
 
             foreach (var item in teleportPreviews)
             {
                 TeleportData.CustomTeleport.Add(item);
             }
-
-            NotifierHelper.Show(NotifierType.Success, $"读取自定义传送坐标文件成功\n{FileUtil.CustomTPList_Path}");
-        }
-        catch (Exception ex)
-        {
-            NotifierHelper.ShowException(ex);
         }
 
-        UpdateTpList();
+        UpdateTeleportList();
 
         ListBox_TeleportClass.SelectedIndex = 0;
         ListBox_TeleportInfo.SelectedIndex = 0;
@@ -45,12 +44,21 @@ public partial class WorldFunctionView : UserControl
 
     private void MainWindow_WindowClosingEvent()
     {
+        SaveConfig();
+    }
 
+    /// <summary>
+    /// 保存配置文件
+    /// </summary>
+    private void SaveConfig()
+    {
+        // 写入到Json文件
+        File.WriteAllText(FileUtil.F_CustomTPList_Path, JsonUtil.JsonSeri(TeleportData.CustomTeleport));
     }
 
     private void Button_LocalWeather_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         var str = (e.OriginalSource as Button).Content.ToString();
         var index = MiscData.LocalWeathers.FindIndex(t => t.Name == str);
@@ -62,55 +70,55 @@ public partial class WorldFunctionView : UserControl
 
     private void Button_KillNPC_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.KillNPC(false);
     }
     private void Button_KillAllHostilityNPC_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.KillNPC(true);
     }
 
     private void Button_KillAllPolice_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.KillPolice();
     }
 
     private void Button_DestroyAllVehicles_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.DestroyAllVehicles();
     }
 
     private void Button_DestroyAllNPCVehicles_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.DestroyNPCVehicles(false);
     }
 
     private void Button_DestroyAllHostilityNPCVehicles_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.DestroyNPCVehicles(true);
     }
 
     private void Button_TPAllNPCToMe_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.TeleportNPCToMe(false);
     }
 
     private void Button_TPHostilityNPCToMe_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         World.TeleportNPCToMe(true);
     }
@@ -121,7 +129,7 @@ public partial class WorldFunctionView : UserControl
     /// <summary>
     /// 更新传送列表
     /// </summary>
-    private void UpdateTpList()
+    private void UpdateTeleportList()
     {
         ListBox_TeleportClass.Items.Clear();
 
@@ -190,7 +198,7 @@ public partial class WorldFunctionView : UserControl
 
     private void Button_Teleport_AddCustom_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Vector3 vector3 = GTA5Mem.Read<Vector3>(General.WorldPTR, Offsets.PlayerPositionX);
 
@@ -200,7 +208,7 @@ public partial class WorldFunctionView : UserControl
             Position = vector3
         });
 
-        UpdateTpList();
+        UpdateTeleportList();
 
         ListBox_TeleportClass.SelectedIndex = 0;
         ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
@@ -210,7 +218,7 @@ public partial class WorldFunctionView : UserControl
 
     private void Button_Teleport_EditCustom_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         int index1 = ListBox_TeleportClass.SelectedIndex;
         int index2 = ListBox_TeleportInfo.SelectedIndex;
@@ -225,7 +233,7 @@ public partial class WorldFunctionView : UserControl
 
             TeleportData.TeleportDataClass[index1].TeleportInfo[index2].Name = TextBox_Position_Name.Text;
 
-            UpdateTpList();
+            UpdateTeleportList();
 
             ListBox_TeleportClass.SelectedIndex = 0;
             ListBox_TeleportInfo.SelectedIndex = index2; ;
@@ -240,7 +248,7 @@ public partial class WorldFunctionView : UserControl
 
     private void Button_Teleport_DeleteCustom_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         int index1 = ListBox_TeleportClass.SelectedIndex;
         int index2 = ListBox_TeleportInfo.SelectedIndex;
@@ -248,7 +256,7 @@ public partial class WorldFunctionView : UserControl
         {
             TeleportData.TeleportDataClass[index1].TeleportInfo.Remove(TeleportData.TeleportDataClass[index1].TeleportInfo[index2]);
 
-            UpdateTpList();
+            UpdateTeleportList();
 
             ListBox_TeleportClass.SelectedIndex = 0;
             ListBox_TeleportInfo.SelectedIndex = ListBox_TeleportInfo.Items.Count - 1;
@@ -263,14 +271,14 @@ public partial class WorldFunctionView : UserControl
 
     private void Button_ToWaypoint_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Teleport.ToWaypoint();
     }
 
     private void Button_ToObjective_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Teleport.ToObjective();
     }
@@ -282,7 +290,7 @@ public partial class WorldFunctionView : UserControl
 
     private void Button_Teleport_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
         Teleport.SetTeleportV3Pos(TempData.TCode);
 
@@ -291,18 +299,11 @@ public partial class WorldFunctionView : UserControl
 
     private void Button_Teleport_SaveCustom_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
 
-        try
-        {
-            File.WriteAllText(FileUtil.CustomTPList_Path, JsonUtil.JsonSeri(TeleportData.CustomTeleport));
+        SaveConfig();
 
-            NotifierHelper.Show(NotifierType.Success, $"保存到自定义传送坐标文件成功\n{FileUtil.CustomTPList_Path}");
-        }
-        catch (Exception ex)
-        {
-            NotifierHelper.ShowException(ex);
-        }
+        NotifierHelper.Show(NotifierType.Success, $"保存到自定义传送坐标文件成功");
     }
     #endregion
 }

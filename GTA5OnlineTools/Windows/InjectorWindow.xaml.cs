@@ -45,7 +45,7 @@ public partial class InjectorWindow
     /// <param name="e"></param>
     private void Button_Inject_Click(object sender, RoutedEventArgs e)
     {
-        AudioUtil.ClickSound();
+        AudioUtil.PlayClickSound();
       
         if (string.IsNullOrEmpty(InjectInfo.DLLPath))
         {

@@ -93,9 +93,9 @@ public static class ProcessUtil
             {
                 string path = string.Empty;
                 if (isKiddion)
-                    path = FileUtil.Kiddion_Path;
+                    path = FileUtil.D_Kiddion_Path;
                 else
-                    path = FileUtil.Cache_Path;
+                    path = FileUtil.D_Cache_Path;
 
                 Directory.SetCurrentDirectory(path);
                 path = Path.Combine(path, processName + ".exe");
