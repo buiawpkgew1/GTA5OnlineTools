@@ -21,16 +21,22 @@ public partial class InjectorWindow
     {
         this.DataContext = this;
 
-        foreach (Process process in Process.GetProcesses())
+        Task.Run(() =>
         {
-            ProcessLists.Add(new ProcessList()
+            foreach (Process process in Process.GetProcesses())
             {
-                PID = process.Id,
-                PName = process.ProcessName,
-                MWindowTitle = process.MainWindowTitle,
-                MWindowHandle = process.MainWindowHandle,
-            });
-        }
+                this.Dispatcher.Invoke(() =>
+                {
+                    ProcessLists.Add(new ProcessList()
+                    {
+                        PID = process.Id,
+                        PName = process.ProcessName,
+                        MWindowTitle = process.MainWindowTitle,
+                        MWindowHandle = process.MainWindowHandle,
+                    });
+                });
+            }
+        });
     }
 
     private void Window_Injector_Closing(object sender, CancelEventArgs e)
@@ -46,7 +52,7 @@ public partial class InjectorWindow
     private void Button_Inject_Click(object sender, RoutedEventArgs e)
     {
         AudioUtil.PlayClickSound();
-      
+
         if (string.IsNullOrEmpty(InjectInfo.DLLPath))
         {
             TextBlock_Status.Text = "请选择DLL文件路径";
@@ -59,17 +65,17 @@ public partial class InjectorWindow
             return;
         }
 
+        foreach (ProcessModule module in Process.GetProcessById(InjectInfo.PID).Modules)
+        {
+            if (module.FileName == InjectInfo.DLLPath)
+            {
+                TextBlock_Status.Text = "该DLL已经被注入过了";
+                return;
+            }
+        }
+
         try
         {
-            foreach (ProcessModule module in Process.GetProcessById(InjectInfo.PID).Modules)
-            {
-                if (module.FileName == InjectInfo.DLLPath)
-                {
-                    TextBlock_Status.Text = "该DLL已经被注入过了";
-                    return;
-                }
-            }
-
             BaseInjector.DLLInjector(InjectInfo.PID, InjectInfo.DLLPath);
             BaseInjector.SetForegroundWindow(InjectInfo.MWindowHandle);
             TextBlock_Status.Text = $"DLL注入到进程 {InjectInfo.PName} 成功";
@@ -95,32 +101,44 @@ public partial class InjectorWindow
 
         if (CheckBox_OnlyShowWindowProcess.IsChecked == true)
         {
-            foreach (Process process in Process.GetProcesses())
+            Task.Run(() =>
             {
-                if (!string.IsNullOrEmpty(process.MainWindowTitle))
+                foreach (Process process in Process.GetProcesses())
                 {
-                    ProcessLists.Add(new ProcessList()
+                    if (!string.IsNullOrEmpty(process.MainWindowTitle))
                     {
-                        PID = process.Id,
-                        PName = process.ProcessName,
-                        MWindowTitle = process.MainWindowTitle,
-                        MWindowHandle = process.MainWindowHandle,
-                    });
+                        this.Dispatcher.Invoke(() =>
+                        {
+                            ProcessLists.Add(new ProcessList()
+                            {
+                                PID = process.Id,
+                                PName = process.ProcessName,
+                                MWindowTitle = process.MainWindowTitle,
+                                MWindowHandle = process.MainWindowHandle,
+                            });
+                        });
+                    }
                 }
-            }
+            });
         }
         else
         {
-            foreach (Process process in Process.GetProcesses())
+            Task.Run(() =>
             {
-                ProcessLists.Add(new ProcessList()
+                foreach (Process process in Process.GetProcesses())
                 {
-                    PID = process.Id,
-                    PName = process.ProcessName,
-                    MWindowTitle = process.MainWindowTitle,
-                    MWindowHandle = process.MainWindowHandle,
-                });
-            }
+                    this.Dispatcher.Invoke(() =>
+                    {
+                        ProcessLists.Add(new ProcessList()
+                        {
+                            PID = process.Id,
+                            PName = process.ProcessName,
+                            MWindowTitle = process.MainWindowTitle,
+                            MWindowHandle = process.MainWindowHandle,
+                        });
+                    });
+                }
+            });
         }
     }
 

@@ -21,6 +21,6 @@ public partial class AboutView : UserControl
 
     private void HyperlinkClick(string url)
     {
-        ProcessUtil.OpenURL(url);
+        ProcessUtil.OpenPath(url);
     }
 }

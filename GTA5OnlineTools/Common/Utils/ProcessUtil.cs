@@ -1,5 +1,4 @@
 ﻿using GTA5OnlineTools.Common.Helper;
-using GTA5OnlineTools.Features.Core;
 
 namespace GTA5OnlineTools.Common.Utils;
 
@@ -35,16 +34,7 @@ public static class ProcessUtil
     }
 
     /// <summary>
-    /// 打开指定链接
-    /// </summary>
-    /// <param name="url">http链接地址</param>
-    public static void OpenURL(string url)
-    {
-        Process.Start(url);
-    }
-
-    /// <summary>
-    /// 打开指定路径（带异常提示）
+    /// 打开指定路径或链接（带异常提示）
     /// </summary>
     /// <param name="path">本地文件夹路径</param>
     public static void OpenPath(string path)

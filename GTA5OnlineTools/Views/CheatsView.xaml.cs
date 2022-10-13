@@ -280,11 +280,11 @@ public partial class CheatsView : UserControl
             }
         }
 
-        GTA5Mem.SetForegroundWindow();
-
         try
         {
             BaseInjector.DLLInjector(GTA5Mem.GTA5ProId, _DLLPath);
+            GTA5Mem.SetForegroundWindow();
+            NotifierHelper.Show(NotifierType.Success, "YimMenu注入成功，请前往游戏查看");
         }
         catch (Exception ex)
         {

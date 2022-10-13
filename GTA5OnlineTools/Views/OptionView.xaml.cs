@@ -69,6 +69,17 @@ public partial class OptionView : UserControl
     }
 
     /// <summary>
+    /// 超链接请求导航事件
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+    {
+        ProcessUtil.OpenPath(e.Uri.OriginalString);
+        e.Handled = true;
+    }
+
+    /// <summary>
     /// 保存配置文件
     /// </summary>
     private void SaveConfig()

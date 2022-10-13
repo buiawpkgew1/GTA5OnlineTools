@@ -101,8 +101,9 @@ public partial class SessionChatView : UserControl
                 TextBox_InputMessage.Text = ToDBC(TextBox_InputMessage.Text);
 
                 GTA5Mem.SetForegroundWindow();
-
                 SendMessageToGTA5(TextBox_InputMessage.Text);
+
+                NotifierHelper.Show(NotifierType.Success, "发生文本到GTA5聊天栏成功");
             }
         }
         catch (Exception ex)
@@ -111,6 +112,10 @@ public partial class SessionChatView : UserControl
         }
     }
 
+    /// <summary>
+    /// 模拟键盘按键
+    /// </summary>
+    /// <param name="winVK"></param>
     private void KeyPress(WinVK winVK)
     {
         Thread.Sleep(Convert.ToInt32(Slider_SendKey_Sleep2.Value));
@@ -120,6 +125,10 @@ public partial class SessionChatView : UserControl
         Thread.Sleep(Convert.ToInt32(Slider_SendKey_Sleep2.Value));
     }
 
+    /// <summary>
+    /// 发送消息到GTA5游戏
+    /// </summary>
+    /// <param name="str"></param>
     private void SendMessageToGTA5(string str)
     {
         Thread.Sleep(Convert.ToInt32(Slider_SendKey_Sleep1.Value));
@@ -192,6 +201,11 @@ public partial class SessionChatView : UserControl
         }
     }
 
+    /// <summary>
+    /// 全角字符转半角字符
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
     private string ToDBC(string input)
     {
         char[] c = input.ToCharArray();
@@ -211,12 +225,6 @@ public partial class SessionChatView : UserControl
         }
 
         return new string(c);
-    }
-
-    private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
-    {
-        ProcessUtil.OpenPath(e.Uri.OriginalString);
-        e.Handled = true;
     }
 
     private void Button_ReadPlayerName_Click(object sender, RoutedEventArgs e)
@@ -319,11 +327,11 @@ public partial class SessionChatView : UserControl
             }
         }
 
-        GTA5Mem.SetForegroundWindow();
-
         try
         {
             BaseInjector.DLLInjector(GTA5Mem.GTA5ProId, _DLLPath);
+            GTA5Mem.SetForegroundWindow();
+            NotifierHelper.Show(NotifierType.Success, "DLL注入成功，请前往游戏查看");
         }
         catch (Exception ex)
         {
@@ -338,6 +346,9 @@ public partial class SessionChatView : UserControl
         SaveBlcokWords();
     }
 
+    /// <summary>
+    /// 保存拦截关键词
+    /// </summary>
     private void SaveBlcokWords()
     {
         try
@@ -365,6 +376,9 @@ public partial class SessionChatView : UserControl
         DefaultBlcokWords();
     }
 
+    /// <summary>
+    /// 默认拦截关键词
+    /// </summary>
     private void DefaultBlcokWords()
     {
         ListBox_BlcokWords.Items.Clear();

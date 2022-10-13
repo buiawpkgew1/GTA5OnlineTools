@@ -116,11 +116,13 @@
             <MenuItem
                 x:Name="MenuItem_ShowMainWindow"
                 Click="MenuItem_ShowMainWindow_Click"
-                Header="显示主窗口" />
+                Header="显示主窗口"
+                Icon="🖥" />
             <MenuItem
                 x:Name="MenuItem_ExitProcess"
                 Click="MenuItem_ExitProcess_Click"
-                Header="退出程序" />
+                Header="退出程序"
+                Icon="🗑" />
         </ContextMenu>
     </Window.Resources>
 
