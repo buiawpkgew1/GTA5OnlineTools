@@ -46,6 +46,7 @@
     <None Remove="Features\Files\Kiddion\themes.json" />
     <None Remove="Features\Files\Kiddion\vehicles.json" />
     <None Remove="Features\Files\LSCHax.exe" />
+    <None Remove="Features\Files\Notepad2.exe" />
     <None Remove="Features\Files\Other\SGTA50000" />
     <None Remove="Features\Files\stat.txt" />
   </ItemGroup>
@@ -67,6 +68,7 @@
     <EmbeddedResource Include="Features\Files\Kiddion\themes.json" />
     <EmbeddedResource Include="Features\Files\Kiddion\vehicles.json" />
     <EmbeddedResource Include="Features\Files\LSCHax.exe" />
+    <EmbeddedResource Include="Features\Files\Notepad2.exe" />
     <EmbeddedResource Include="Features\Files\Other\SGTA50000" />
     <EmbeddedResource Include="Features\Files\stat.txt" />
   </ItemGroup>

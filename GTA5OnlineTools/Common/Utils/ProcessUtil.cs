@@ -60,15 +60,14 @@ public static class ProcessUtil
     }
 
     /// <summary>
-    /// 使用指定程序打开指定文件
+    /// 使用Notepad2编辑文本文件
     /// </summary>
-    /// <param name="proName">需要打开的系统程序，比如记事本 notepad.exe</param>
-    /// <param name="path">本地文件路径</param>
-    public static void OpenFileWithProcess(string proName, string path)
+    /// <param name="path"></param>
+    public static void Notepad2EditTextFile(string path)
     {
         try
         {
-            Process.Start(new ProcessStartInfo(proName, path) { UseShellExecute = true });
+            Process.Start(new ProcessStartInfo(FileUtil.D_Cache_Path + "Notepad2.exe", path) { UseShellExecute = true });
         }
         catch (Exception ex)
         {
@@ -138,5 +137,6 @@ public static class ProcessUtil
         CloseProcess("LSCHax");
         CloseProcess("dControl");
         CloseProcess("GetKidTxt");
+        CloseProcess("Notepad2");
     }
 }

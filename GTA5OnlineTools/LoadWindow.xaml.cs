@@ -164,6 +164,7 @@ public partial class LoadWindow
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "dControl.ini", FileUtil.D_Cache_Path + "dControl.ini");
 
                 FileUtil.ExtractResFile(FileUtil.Resource_Path + "GetKidTxt.exe", FileUtil.D_Cache_Path + "GetKidTxt.exe");
+                FileUtil.ExtractResFile(FileUtil.Resource_Path + "Notepad2.exe", FileUtil.D_Cache_Path + "Notepad2.exe");
 
                 // 判断DLL文件是否存在以及是否被占用
                 if (!File.Exists(FileUtil.D_Inject_Path + "YimMenu.dll"))

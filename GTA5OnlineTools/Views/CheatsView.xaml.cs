@@ -144,7 +144,7 @@ public partial class CheatsView : UserControl
                 ProcessUtil.OpenPath(FileUtil.D_Kiddion_Path);
                 break;
             case "GTAHaxStatFile":
-                ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.F_GTAHaxStat_Path);
+                ProcessUtil.Notepad2EditTextFile(FileUtil.F_GTAHaxStat_Path);
                 break;
             case "YimMenuConfigFolder":
                 ProcessUtil.OpenPath(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"/BigBaseV2/");

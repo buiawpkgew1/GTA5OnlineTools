@@ -194,7 +194,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditKiddionConfigClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.D_Kiddion_Path + @"config.json");
+        ProcessUtil.Notepad2EditTextFile(FileUtil.D_Kiddion_Path + @"config.json");
     }
 
     /// <summary>
@@ -202,7 +202,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditKiddionTPClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.D_Kiddion_Path + @"teleports.json");
+        ProcessUtil.Notepad2EditTextFile(FileUtil.D_Kiddion_Path + @"teleports.json");
     }
 
     /// <summary>
@@ -210,7 +210,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditKiddionVCClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.D_Kiddion_Path + @"vehicles.json");
+        ProcessUtil.Notepad2EditTextFile(FileUtil.D_Kiddion_Path + @"vehicles.json");
     }
 
     /// <summary>
@@ -294,7 +294,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditGTAHaxStatClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", FileUtil.F_GTAHaxStat_Path);
+        ProcessUtil.Notepad2EditTextFile(FileUtil.F_GTAHaxStat_Path);
     }
 
     /// <summary>
@@ -475,7 +475,7 @@ public partial class ToolsView : UserControl
     /// </summary>
     private void EditHostsClick()
     {
-        ProcessUtil.OpenFileWithProcess("notepad.exe", @"C:\windows\system32\drivers\etc\hosts");
+        ProcessUtil.Notepad2EditTextFile(@"C:\windows\system32\drivers\etc\hosts");
     }
 
     /// <summary>
