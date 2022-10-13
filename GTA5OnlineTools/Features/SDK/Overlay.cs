@@ -126,7 +126,7 @@ public class Overlay : IDisposable
             gview_width = windowData.Width / 2;
             gview_height = windowData.Height / 2;
 
-            long m_ped_factory = GTA5Mem.Read<long>(Globals.WorldPTR);
+            long m_ped_factory = GTA5Mem.Read<long>(General.WorldPTR);
             long m_local_ped = GTA5Mem.Read<long>(m_ped_factory + 0x08);
 
             // 自己坐标
@@ -136,11 +136,11 @@ public class Overlay : IDisposable
             /////////////////////////////////////////////////////////////////////
 
             // 玩家列表
-            long pPlayerListPTR = GTA5Mem.Read<long>(Globals.NetworkPlayerMgrPTR);
+            long pPlayerListPTR = GTA5Mem.Read<long>(General.NetworkPlayerMgrPTR);
             int playerCount = GTA5Mem.Read<int>(pPlayerListPTR + 0x178);
 
             // Ped数量
-            long m_replay = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR);
+            long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
             long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
             int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
             int m_cur_peds = GTA5Mem.Read<int>(m_ped_interface + 0x110);
@@ -149,7 +149,7 @@ public class Overlay : IDisposable
                 $"GTA5线上小助手\n\nX: {myPosV3.X:0.0000}\nY: {myPosV3.Y:0.0000}\nZ: {myPosV3.Z:0.0000}\n\n" +
                 $"玩家数量: {playerCount}\nPed数量: {m_cur_peds}");
 
-            long pAimingPedPTR = GTA5Mem.Read<long>(Globals.AimingPedPTR);
+            long pAimingPedPTR = GTA5Mem.Read<long>(General.AimingPedPTR);
             bool isAimPed = GTA5Mem.Read<long>(pAimingPedPTR + 0x280) > 0;
 
             if (Settings.Overlay.ESP_Crosshair)
@@ -419,10 +419,10 @@ public class Overlay : IDisposable
                 Vector3 teleW_pedCoords = new Vector3 { X = 0, Y = 0, Z = 0 };
 
                 // 玩家自己RID
-                long myRID = GTA5Mem.Read<long>(Globals.WorldPTR, Offsets.RID);
+                long myRID = GTA5Mem.Read<long>(General.WorldPTR, Offsets.RID);
 
                 // 相机坐标
-                long pCCameraPTR = GTA5Mem.Read<long>(Globals.CCameraPTR);
+                long pCCameraPTR = GTA5Mem.Read<long>(General.CCameraPTR);
                 long pCCameraPTR_0 = GTA5Mem.Read<long>(pCCameraPTR + 0x00);
                 pCCameraPTR_0 = GTA5Mem.Read<long>(pCCameraPTR_0 + 0x3C0);
                 Vector3 cameraV3Pos = GTA5Mem.Read<Vector3>(pCCameraPTR_0 + 0x60);
@@ -430,10 +430,10 @@ public class Overlay : IDisposable
                 // 是否是第一人称，当Fov=0为第一人称或者开镜状态，第三人称50
                 float isFPP = GTA5Mem.Read<float>(pCCameraPTR_0 + 0x10, new int[] { 0x30 });
                 // 玩家是否处于载具中，或者掩护状态（载具/掩体=0，正常=16）
-                byte isPlayerInCar = GTA5Mem.Read<byte>(Globals.WorldPTR, Offsets.InVehicle);
+                byte isPlayerInCar = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.InVehicle);
 
                 // Ped实体
-                long pReplayInterfacePTR = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR);
+                long pReplayInterfacePTR = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
                 long my_offset_0x18 = GTA5Mem.Read<long>(pReplayInterfacePTR + 0x18);
 
                 for (int i = 0; i < 128; i++)
@@ -788,7 +788,7 @@ public class Overlay : IDisposable
         Vector2 screenV2;
         Vector3 cameraV3;
 
-        float[] viewMatrix = GTA5Mem.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
+        float[] viewMatrix = GTA5Mem.ReadMatrix<float>(General.ViewPortPTR + 0xC0, 16);
 
         cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
         if (cameraV3.Z < 0.001f)
@@ -813,7 +813,7 @@ public class Overlay : IDisposable
         Vector2 boxV2;
         Vector3 cameraV3;
 
-        float[] viewMatrix = GTA5Mem.ReadMatrix<float>(Globals.ViewPortPTR + 0xC0, 16);
+        float[] viewMatrix = GTA5Mem.ReadMatrix<float>(General.ViewPortPTR + 0xC0, 16);
 
         cameraV3.Z = viewMatrix[2] * posV3.X + viewMatrix[6] * posV3.Y + viewMatrix[10] * posV3.Z + viewMatrix[14];
         if (cameraV3.Z < 0.001f)

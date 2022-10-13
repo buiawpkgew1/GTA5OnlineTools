@@ -26,7 +26,7 @@ public static class Locals
     {
         for (int i = 0; i < 54; i++)
         {
-            var pointer = GTA5Mem.Read<long>(Globals.LocalScriptsPTR);
+            var pointer = GTA5Mem.Read<long>(General.LocalScriptsPTR);
             pointer = GTA5Mem.Read<long>(pointer + i * 0x8);
 
             var str = GTA5Mem.ReadString(pointer + 0xD4, null, name.Length + 1);
@@ -41,7 +41,7 @@ public static class Locals
     {
         for (int i = 0; i < 54; i++)
         {
-            var pointer = GTA5Mem.Read<long>(Globals.LocalScriptsPTR);
+            var pointer = GTA5Mem.Read<long>(General.LocalScriptsPTR);
             pointer = GTA5Mem.Read<long>(pointer + i * 0x8);
 
             var address = GTA5Mem.Read<long>(pointer + 0xB0);

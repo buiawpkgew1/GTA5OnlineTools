@@ -1,4 +1,5 @@
 ﻿using GTA5OnlineTools.Common.Utils;
+using GTA5OnlineTools.Features;
 using GTA5OnlineTools.Features.SDK;
 using GTA5OnlineTools.Features.Core;
 using GTA5OnlineTools.Features.Data;
@@ -10,9 +11,9 @@ namespace GTA5OnlineTools.Views.Modules;
 /// </summary>
 public partial class SelfStateView : UserControl
 {
-    // 快捷键
-    private HotKeys MainHotKeys;
-
+    /// <summary>
+    /// 角色无碰撞体积切换
+    /// </summary>
     private bool NoCollisionToggle = false;
 
     public SelfStateView()
@@ -21,78 +22,80 @@ public partial class SelfStateView : UserControl
         this.DataContext = this;
         MainWindow.WindowClosingEvent += MainWindow_WindowClosingEvent;
 
-        new Thread(MainThread)
+        new Thread(SelfStateMainThread)
         {
-            Name = "MainThread",
+            Name = "SelfStateMainThread",
             IsBackground = true
         }.Start();
 
-        new Thread(CommonThread)
+        new Thread(SelfStateCommonThread)
         {
-            Name = "CommonThread",
+            Name = "SelfStateCommonThread",
             IsBackground = true
         }.Start();
 
-        MainHotKeys = new HotKeys();
-        MainHotKeys.AddKey(WinVK.F3);
-        MainHotKeys.AddKey(WinVK.F4);
-        MainHotKeys.AddKey(WinVK.F5);
-        MainHotKeys.AddKey(WinVK.F6);
-        MainHotKeys.AddKey(WinVK.F7);
-        MainHotKeys.AddKey(WinVK.F8);
-        MainHotKeys.AddKey(WinVK.Oem0);
-        MainHotKeys.AddKey(WinVK.DELETE);
-        MainHotKeys.KeyDownEvent += MainHotKeys_KeyDownEvent;
+        HotKeys.AddKey(WinVK.F3);
+        HotKeys.AddKey(WinVK.F4);
+        HotKeys.AddKey(WinVK.F5);
+        HotKeys.AddKey(WinVK.F6);
+        HotKeys.AddKey(WinVK.F7);
+        HotKeys.AddKey(WinVK.F8);
+        HotKeys.AddKey(WinVK.Oem0);
+        HotKeys.KeyDownEvent += HotKeys_KeyDownEvent;
     }
 
     private void MainWindow_WindowClosingEvent()
     {
-        MainHotKeys.Dispose();
+
     }
 
-    private void MainHotKeys_KeyDownEvent(int Id, string Name)
+    /// <summary>
+    /// 全局热键 按键按下事件
+    /// </summary>
+    /// <param name="vK"></param>
+    private void HotKeys_KeyDownEvent(WinVK vK)
     {
         this.Dispatcher.BeginInvoke(() =>
         {
-            switch (Id)
+            switch (vK)
             {
-                case (int)WinVK.F3:
+                case WinVK.F3:
                     if (CheckBox_FillAllAmmo.IsChecked == true)
                     {
                         Weapon.FillAllAmmo();
                     }
                     break;
-                case (int)WinVK.F4:
+                case WinVK.F4:
                     if (CheckBox_MovingFoward.IsChecked == true)
                     {
                         Teleport.MovingFoward();
                     }
                     break;
-                case (int)WinVK.F5:
+                case WinVK.F5:
                     if (CheckBox_ToWaypoint.IsChecked == true)
                     {
                         Teleport.ToWaypoint();
                     }
                     break;
-                case (int)WinVK.F6:
+                case WinVK.F6:
                     if (CheckBox_ToObjective.IsChecked == true)
                     {
                         Teleport.ToObjective();
                     }
                     break;
-                case (int)WinVK.F7:
+                case WinVK.F7:
                     if (CheckBox_FillHealthArmor.IsChecked == true)
                     {
                         Player.FillHealthArmor();
                     }
                     break;
-                case (int)WinVK.F8:
+                case WinVK.F8:
                     if (CheckBox_ClearWanted.IsChecked == true)
                     {
                         Player.WantedLevel(0x00);
                     }
                     break;
-                case (int)WinVK.Oem0:
+                case WinVK.Oem0:
                     if (CheckBox_NoCollision.IsChecked == true)
                     {
                         NoCollisionToggle = !NoCollisionToggle;
@@ -110,21 +113,21 @@ public partial class SelfStateView : UserControl
         });
     }
 
-    private void MainThread()
+    private void SelfStateMainThread()
     {
-        while (true)
+        while (Globals.IsAppRunning)
         {
-            float oHealth = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.Player.Health);
-            float oMaxHealth = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.Player.MaxHealth);
-            float oArmor = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.Player.Armor);
+            float oHealth = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.Health);
+            float oMaxHealth = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.MaxHealth);
+            float oArmor = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.Armor);
 
-            byte oWanted = GTA5Mem.Read<byte>(Globals.WorldPTR, Offsets.Player.Wanted);
-            float oRunSpeed = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.Player.RunSpeed);
-            float oSwimSpeed = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.Player.SwimSpeed);
-            float oStealthSpeed = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.Player.StealthSpeed);
+            byte oWanted = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.Player.Wanted);
+            float oRunSpeed = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.RunSpeed);
+            float oSwimSpeed = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.SwimSpeed);
+            float oStealthSpeed = GTA5Mem.Read<float>(General.WorldPTR, Offsets.Player.StealthSpeed);
 
-            byte oInVehicle = GTA5Mem.Read<byte>(Globals.WorldPTR, Offsets.InVehicle);
-            byte oCurPassenger = GTA5Mem.Read<byte>(Globals.WorldPTR, Offsets.Vehicle.CurPassenger);
+            byte oInVehicle = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.InVehicle);
+            byte oCurPassenger = GTA5Mem.Read<byte>(General.WorldPTR, Offsets.Vehicle.CurPassenger);
 
             ////////////////////////////////
 
@@ -138,17 +141,17 @@ public partial class SelfStateView : UserControl
                 Player.NoRagdoll(true);
 
             if (Settings.Player.NoCollision)
-                GTA5Mem.Write(Globals.WorldPTR, Offsets.Player.NoCollision, -1.0f);
+                GTA5Mem.Write(General.WorldPTR, Offsets.Player.NoCollision, -1.0f);
 
             if (Settings.Vehicle.VehicleGodMode)
-                GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
+                GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
 
             if (Settings.Vehicle.VehicleSeatbelt)
-                GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
+                GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
 
             ////////////////////////////////
 
-            Dispatcher.BeginInvoke(new Action(delegate
+            this.Dispatcher.BeginInvoke(new Action(delegate
             {
                 if (Slider_Health.Value != oHealth)
                     Slider_Health.Value = oHealth;
@@ -176,9 +179,9 @@ public partial class SelfStateView : UserControl
         }
     }
 
-    private void CommonThread()
+    private void SelfStateCommonThread()
     {
-        while (true)
+        while (Globals.IsAppRunning)
         {
             if (Settings.Common.AutoClearWanted)
                 Player.WantedLevel(0x00);
@@ -198,37 +201,37 @@ public partial class SelfStateView : UserControl
 
     private void Slider_Health_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.Health, (float)Slider_Health.Value);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.Health, (float)Slider_Health.Value);
     }
 
     private void Slider_MaxHealth_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.MaxHealth, (float)Slider_MaxHealth.Value);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.MaxHealth, (float)Slider_MaxHealth.Value);
     }
 
     private void Slider_Armor_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.Armor, (float)Slider_Armor.Value);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.Armor, (float)Slider_Armor.Value);
     }
 
     private void Slider_Wanted_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.Wanted, (byte)Slider_Wanted.Value);
+        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Wanted, (byte)Slider_Wanted.Value);
     }
 
     private void Slider_RunSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.RunSpeed, (float)Slider_RunSpeed.Value);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.RunSpeed, (float)Slider_RunSpeed.Value);
     }
 
     private void Slider_SwimSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.SwimSpeed, (float)Slider_SwimSpeed.Value);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.SwimSpeed, (float)Slider_SwimSpeed.Value);
     }
 
     private void Slider_StealthSpeed_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.StealthSpeed, (float)Slider_StealthSpeed.Value);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.StealthSpeed, (float)Slider_StealthSpeed.Value);
     }
 
     private void CheckBox_PlayerGodMode_Click(object sender, RoutedEventArgs e)
@@ -263,19 +266,19 @@ public partial class SelfStateView : UserControl
     {
         if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == false)
         {
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0x04);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0x04);
         }
         else if (CheckBox_NPCIgnore.IsChecked == false && CheckBox_PoliceIgnore.IsChecked == true)
         {
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0xC3);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0xC3);
         }
         else if (CheckBox_NPCIgnore.IsChecked == true && CheckBox_PoliceIgnore.IsChecked == true)
         {
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0xC7);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0xC7);
         }
         else
         {
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.NPCIgnore, 0x00);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.NPCIgnore, 0x00);
         }
     }
 

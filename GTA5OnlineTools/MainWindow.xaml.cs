@@ -11,6 +11,8 @@ using RestSharp;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Hardcodet.Wpf.TaskbarNotification;
+using GTA5OnlineTools.Features.Data;
+using System;
 
 namespace GTA5OnlineTools;
 
@@ -72,6 +74,17 @@ public partial class MainWindow
 
     ///////////////////////////////////////////////////////////////
 
+    /// <summary>
+    /// 主窗口 窗口句柄
+    /// </summary>
+    private IntPtr MainWinHandle;
+    /// <summary>
+    /// 主窗口 鼠标坐标数据
+    /// </summary>
+    private POINT MainWinPOINT;
+
+    ///////////////////////////////////////////////////////////////
+
     public MainWindow()
     {
         InitializeComponent();
@@ -127,6 +140,15 @@ public partial class MainWindow
             Name = "CheckUpdateThread",
             IsBackground = true
         }.Start();
+
+        ///////////////////////////////////////////////////////////////
+
+        // 获取自身窗口句柄
+        MainWinHandle = new WindowInteropHelper(this).Handle;
+        Win32.GetCursorPos(out MainWinPOINT);
+
+        HotKeys.AddKey(WinVK.DELETE);
+        HotKeys.KeyDownEvent += HotKeys_KeyDownEvent;
     }
 
     /// <summary>
@@ -335,6 +357,70 @@ public partial class MainWindow
     private void ShowNoticeInfo(string msg)
     {
         TaskbarIcon_Main.ShowBalloonTip("提示", msg, BalloonIcon.Info);
+    }
+
+    /// <summary>
+    /// 主窗口是否置顶
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void CheckBox_IsTopMost_Click(object sender, RoutedEventArgs e)
+    {
+        if (CheckBox_IsTopMost.IsChecked == true)
+            Topmost = true;
+        else
+            Topmost = false;
+    }
+
+    /// <summary>
+    /// 全局热键 按键按下事件
+    /// </summary>
+    /// <param name="vK"></param>
+    /// <exception cref="NotImplementedException"></exception>
+    private void HotKeys_KeyDownEvent(WinVK vK)
+    {
+        this.Dispatcher.BeginInvoke(() =>
+        {
+            switch (vK)
+            {
+                case WinVK.DELETE:
+                    ShowWindow();
+                    break;
+            }
+        });
+    }
+
+    /// <summary>
+    /// 显示隐藏主窗口
+    /// </summary>
+    private void ShowWindow()
+    {
+        Settings.ShowWindow = !Settings.ShowWindow;
+        if (Settings.ShowWindow)
+        {
+            //Show();
+            WindowState = WindowState.Normal;
+            Focus();
+
+            if (CheckBox_IsTopMost.IsChecked == false)
+            {
+                Topmost = true;
+                Topmost = false;
+            }
+
+            Win32.SetCursorPos(MainWinPOINT.X, MainWinPOINT.Y);
+
+            Win32.SetForegroundWindow(MainWinHandle);
+        }
+        else
+        {
+            //Hide();
+            WindowState = WindowState.Minimized;
+
+            Win32.GetCursorPos(out MainWinPOINT);
+
+            GTA5Mem.SetForegroundWindow();
+        }
     }
 
     #region 托盘菜单事件

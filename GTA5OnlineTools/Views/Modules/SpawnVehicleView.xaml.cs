@@ -26,14 +26,14 @@ public partial class SpawnVehicleView : UserControl
 
         Task.Run(() =>
         {
-            this.Dispatcher.Invoke(() =>
+            this.Dispatcher.Invoke((Delegate)(() =>
             {
                 var windowData = GTA5Mem.GetGameWindowData();
 
                 TextBlock_ScreenResolution.Text = $"屏幕分辨率 {SystemParameters.PrimaryScreenWidth} x {SystemParameters.PrimaryScreenHeight}";
                 TextBlock_GameResolution.Text = $"游戏分辨率 {windowData.Width} x {windowData.Height}";
-                TextBlock_ScreenScale.Text = $"缩放比例 {ScreenHelper.GetScalingRatio()}";
-            });
+                TextBlock_ScreenScale.Text = $"缩放比例 {ScreenMgr.GetScalingRatio()}";
+            }));
         });
 
         // 载具列表
@@ -208,7 +208,7 @@ public partial class SpawnVehicleView : UserControl
 
         TextBlock_ScreenResolution.Text = $"屏幕分辨率 {SystemParameters.PrimaryScreenWidth} x {SystemParameters.PrimaryScreenHeight}";
         TextBlock_GameResolution.Text = $"游戏分辨率 {windowData.Width} x {windowData.Height}";
-        TextBlock_ScreenScale.Text = $"缩放比例 {ScreenHelper.GetScalingRatio()}";
+        TextBlock_ScreenScale.Text = $"缩放比例 {ScreenMgr.GetScalingRatio()}";
     }
 
     private void Button_StopDraw_Click(object sender, RoutedEventArgs e)
@@ -225,7 +225,7 @@ public partial class SpawnVehicleView : UserControl
 
         TextBlock_ScreenResolution.Text = $"屏幕分辨率 {SystemParameters.PrimaryScreenWidth} x {SystemParameters.PrimaryScreenHeight}";
         TextBlock_GameResolution.Text = $"游戏分辨率 {windowData.Width} x {windowData.Height}";
-        TextBlock_ScreenScale.Text = $"缩放比例 {ScreenHelper.GetScalingRatio()}";
+        TextBlock_ScreenScale.Text = $"缩放比例 {ScreenMgr.GetScalingRatio()}";
     }
 
     private void RadioButton_SpeedMeterPos_Center_Click(object sender, RoutedEventArgs e)

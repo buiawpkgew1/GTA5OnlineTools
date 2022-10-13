@@ -43,6 +43,13 @@
                 VerticalAlignment="Center"
                 DockPanel.Dock="Right"
                 Orientation="Horizontal">
+                <CheckBox
+                    x:Name="CheckBox_IsTopMost"
+                    Margin="5"
+                    Click="CheckBox_IsTopMost_Click"
+                    Content="窗口置顶"
+                    ToolTip="按《Delete》键 显示/隐藏 主窗口"
+                    WindowChrome.IsHitTestVisibleInChrome="True" />
                 <emoji:TextBlock
                     Margin="5"
                     VerticalAlignment="Center"

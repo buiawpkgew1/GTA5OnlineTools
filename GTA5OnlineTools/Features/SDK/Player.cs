@@ -10,9 +10,9 @@ public static class Player
     public static void GodMode(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.GodMode, 0x01);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.GodMode, 0x01);
         else
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.GodMode, 0x00);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.GodMode, 0x00);
     }
 
     /// <summary>
@@ -20,7 +20,7 @@ public static class Player
     /// </summary>
     public static void WantedLevel(byte level)
     {
-        GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.Wanted, level);
+        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Wanted, level);
     }
 
     /// <summary>
@@ -60,9 +60,9 @@ public static class Player
     public static void NoRagdoll(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.NoRagdoll, 0x01);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.NoRagdoll, 0x01);
         else
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.NoRagdoll, 0x20);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.NoRagdoll, 0x20);
     }
 
     /// <summary>
@@ -71,9 +71,9 @@ public static class Player
     public static void NoCollision(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write(Globals.WorldPTR, Offsets.Player.NoCollision, -1.0f);
+            GTA5Mem.Write(General.WorldPTR, Offsets.Player.NoCollision, -1.0f);
         else
-            GTA5Mem.Write(Globals.WorldPTR, Offsets.Player.NoCollision, 0.25f);
+            GTA5Mem.Write(General.WorldPTR, Offsets.Player.NoCollision, 0.25f);
     }
 
     /// <summary>
@@ -81,9 +81,9 @@ public static class Player
     /// </summary>
     public static void ProofBullet(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 4)) : (uint)(proof & ~(1 << 4));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -91,9 +91,9 @@ public static class Player
     /// </summary>
     public static void ProofFire(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 5)) : (uint)(proof & ~(1 << 5));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -101,9 +101,9 @@ public static class Player
     /// </summary>
     public static void ProofCollision(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 6)) : (uint)(proof & ~(1 << 6));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -111,9 +111,9 @@ public static class Player
     /// </summary>
     public static void ProofMelee(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 7)) : (uint)(proof & ~(1 << 7));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -121,9 +121,9 @@ public static class Player
     /// </summary>
     public static void ProofGod(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 8)) : (uint)(proof & ~(1 << 8));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -131,9 +131,9 @@ public static class Player
     /// </summary>
     public static void ProofExplosion(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 11)) : (uint)(proof & ~(1 << 11));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -141,9 +141,9 @@ public static class Player
     /// </summary>
     public static void ProofSteam(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 15)) : (uint)(proof & ~(1 << 15));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -151,9 +151,9 @@ public static class Player
     /// </summary>
     public static void ProofDrown(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 16)) : (uint)(proof & ~(1 << 16));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -161,9 +161,9 @@ public static class Player
     /// </summary>
     public static void ProofWater(bool isEnable)
     {
-        var proof = GTA5Mem.Read<uint>(Globals.WorldPTR, Offsets.PlayerProof);
+        var proof = GTA5Mem.Read<uint>(General.WorldPTR, Offsets.PlayerProof);
         proof = isEnable ? (uint)(proof | (1 << 24)) : (uint)(proof & ~(1 << 24));
-        GTA5Mem.Write<uint>(Globals.WorldPTR, Offsets.PlayerProof, proof);
+        GTA5Mem.Write<uint>(General.WorldPTR, Offsets.PlayerProof, proof);
     }
 
     /// <summary>
@@ -172,9 +172,9 @@ public static class Player
     public static void Invisibility(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.Invisibility, 0x01);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Invisibility, 0x01);
         else
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.Invisibility, 0x27);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Invisibility, 0x27);
     }
 
     /// <summary>
@@ -182,9 +182,9 @@ public static class Player
     /// </summary>
     public static void FillHealthArmor()
     {
-        GTA5Mem.Write(Globals.WorldPTR, Offsets.Player.Health, 328.0f);
-        GTA5Mem.Write(Globals.WorldPTR, Offsets.Player.MaxHealth, 328.0f);
-        GTA5Mem.Write(Globals.WorldPTR, Offsets.Player.Armor, 50.0f);
+        GTA5Mem.Write(General.WorldPTR, Offsets.Player.Health, 328.0f);
+        GTA5Mem.Write(General.WorldPTR, Offsets.Player.MaxHealth, 328.0f);
+        GTA5Mem.Write(General.WorldPTR, Offsets.Player.Armor, 50.0f);
     }
 
     /// <summary>
@@ -192,7 +192,7 @@ public static class Player
     /// </summary>
     public static void Suicide()
     {
-        GTA5Mem.Write(Globals.WorldPTR, Offsets.Player.Health, 1.0f);
+        GTA5Mem.Write(General.WorldPTR, Offsets.Player.Health, 1.0f);
     }
 
     /// <summary>
@@ -201,9 +201,9 @@ public static class Player
     public static void UndeadOffRadar(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.MaxHealth, 0.0f);
+            GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.MaxHealth, 0.0f);
         else
-            GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Player.MaxHealth, 328.0f);
+            GTA5Mem.Write<float>(General.WorldPTR, Offsets.Player.MaxHealth, 328.0f);
     }
 
     /// <summary>
@@ -212,8 +212,8 @@ public static class Player
     public static void WantedCanChange(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.WantedCanChange, 1.0f);
+            GTA5Mem.Write<float>(General.WorldPTR, Offsets.WantedCanChange, 1.0f);
         else
-            GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.WantedCanChange, 0.0f);
+            GTA5Mem.Write<float>(General.WorldPTR, Offsets.WantedCanChange, 0.0f);
     }
 }

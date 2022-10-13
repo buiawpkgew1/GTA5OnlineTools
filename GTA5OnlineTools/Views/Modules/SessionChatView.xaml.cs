@@ -234,9 +234,9 @@ public partial class SessionChatView : UserControl
             TextBox_ChatName.Text != "" &&
             TextBox_ExternalDisplay.Text != "")
         {
-            GTA5Mem.WriteString(Globals.WorldPTR, Offsets.OnlineListPlayerName, TextBox_OnlineList.Text + "\0");
-            GTA5Mem.WriteString(Globals.PlayerChatterNamePTR + 0xBC, null, TextBox_ChatName.Text + "\0");
-            GTA5Mem.WriteString(Globals.PlayerExternalDisplayNamePTR + 0x84, null, TextBox_ExternalDisplay.Text + "\0");
+            GTA5Mem.WriteString(General.WorldPTR, Offsets.OnlineListPlayerName, TextBox_OnlineList.Text + "\0");
+            GTA5Mem.WriteString(General.PlayerChatterNamePTR + 0xBC, null, TextBox_ChatName.Text + "\0");
+            GTA5Mem.WriteString(General.PlayerExternalDisplayNamePTR + 0x84, null, TextBox_ExternalDisplay.Text + "\0");
 
             NotifierHelper.Show(NotifierType.Success, "写入成功，请切换战局生效");
         }
@@ -248,9 +248,9 @@ public partial class SessionChatView : UserControl
 
     private void ReadPlayerName()
     {
-        TextBox_OnlineList.Text = GTA5Mem.ReadString(Globals.WorldPTR, Offsets.OnlineListPlayerName, 20);
-        TextBox_ChatName.Text = GTA5Mem.ReadString(Globals.PlayerChatterNamePTR + 0xBC, null, 20);
-        TextBox_ExternalDisplay.Text = GTA5Mem.ReadString(Globals.PlayerExternalDisplayNamePTR + 0x84, null, 20);
+        TextBox_OnlineList.Text = GTA5Mem.ReadString(General.WorldPTR, Offsets.OnlineListPlayerName, 20);
+        TextBox_ChatName.Text = GTA5Mem.ReadString(General.PlayerChatterNamePTR + 0xBC, null, 20);
+        TextBox_ExternalDisplay.Text = GTA5Mem.ReadString(General.PlayerExternalDisplayNamePTR + 0x84, null, 20);
     }
 
     private void TextBox_OnlineList_TextChanged(object sender, TextChangedEventArgs e)

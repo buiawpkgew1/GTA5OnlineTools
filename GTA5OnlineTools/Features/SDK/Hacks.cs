@@ -11,7 +11,7 @@ public static class Hacks
     /// <returns></returns>
     public static long GlobalAddress(int index)
     {
-        return GTA5Mem.Read<long>(Globals.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
+        return GTA5Mem.Read<long>(General.GlobalPTR + 0x8 * ((index >> 0x12) & 0x3F)) + 8 * (index & 0x3FFFF);
     }
 
     /// <summary>
@@ -139,9 +139,9 @@ public static class Hacks
         //uint modelHash = Joaat("prop_cash_pile_01");
         uint pickupHash = Joaat(pickup);
 
-        float x = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
-        float y = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
-        float z = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
+        float x = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
+        float y = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
+        float z = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
 
         WriteGA<float>(2787534 + 3, x);
         WriteGA<float>(2787534 + 4, y);
@@ -153,7 +153,7 @@ public static class Hacks
 
         Thread.Sleep(150);
 
-        var m_dwpPickUpInterface = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x20 });
+        var m_dwpPickUpInterface = GTA5Mem.Read<long>(General.ReplayInterfacePTR, new int[] { 0x20 });
 
         var dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110, null);
         var m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100, null);

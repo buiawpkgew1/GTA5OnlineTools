@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.Core;
 
-public static class ScreenHelper
+public static class ScreenMgr
 {
     [DllImport("user32.dll", CharSet = CharSet.Auto)]
     [ResourceExposure(ResourceScope.None)]

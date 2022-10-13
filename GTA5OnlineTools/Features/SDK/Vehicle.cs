@@ -10,9 +10,9 @@ public static class Vehicle
     public static void GodMode(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.GodMode, 0x01);
         else
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.GodMode, 0x00);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.GodMode, 0x00);
     }
 
     /// <summary>
@@ -21,9 +21,9 @@ public static class Vehicle
     public static void Seatbelt(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Seatbelt, 0xC9);
         else
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Player.Seatbelt, 0xC8);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Player.Seatbelt, 0xC8);
     }
 
     /// <summary>
@@ -32,9 +32,9 @@ public static class Vehicle
     public static void Invisibility(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Invisibility, 0x01);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Invisibility, 0x01);
         else
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Invisibility, 0x27);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Invisibility, 0x27);
     }
 
     /// <summary>
@@ -42,7 +42,7 @@ public static class Vehicle
     /// </summary>
     public static void Extras(byte flag)
     {
-        GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Extras, flag);
+        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Extras, flag);
     }
 
     /// <summary>
@@ -51,9 +51,9 @@ public static class Vehicle
     public static void Parachute(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Parachute, 1);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Parachute, 1);
         else
-            GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Vehicle.Parachute, 0);
+            GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Vehicle.Parachute, 0);
     }
 
     /// <summary>
@@ -63,15 +63,15 @@ public static class Vehicle
     {
         Task.Run(() =>
         {
-            GTA5Mem.Write<int>(Globals.GlobalPTR + 0x08 * 0x0A, new int[] { 0x17BE28 }, 1);
-            GTA5Mem.Write<float>(Globals.WorldPTR, new int[] { 0x08, 0xD30, 0x280 }, 999.0f);
+            GTA5Mem.Write<int>(General.GlobalPTR + 0x08 * 0x0A, new int[] { 0x17BE28 }, 1);
+            GTA5Mem.Write<float>(General.WorldPTR, new int[] { 0x08, 0xD30, 0x280 }, 999.0f);
 
             Task.Delay(300).Wait();
 
-            int FixVehValue = GTA5Mem.Read<int>(Globals.PickupDataPTR, new int[] { 0x228 });
-            int BSTValue = GTA5Mem.Read<int>(Globals.PickupDataPTR, new int[] { 0x160 });
+            int FixVehValue = GTA5Mem.Read<int>(General.PickupDataPTR, new int[] { 0x228 });
+            int BSTValue = GTA5Mem.Read<int>(General.PickupDataPTR, new int[] { 0x160 });
 
-            long m_dwpPickUpInterface = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR, new int[] { 0x20 });
+            long m_dwpPickUpInterface = GTA5Mem.Read<long>(General.ReplayInterfacePTR, new int[] { 0x20 });
             long dw_curPickUpNum = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x110, null);
             long m_dwpPedList = GTA5Mem.Read<long>(m_dwpPickUpInterface + 0x100, null);
 
@@ -90,9 +90,9 @@ public static class Vehicle
                     float dwpPickupY = GTA5Mem.Read<float>(dwpPickup + 0x94, null);
                     float dwpPickupZ = GTA5Mem.Read<float>(dwpPickup + 0x98, null);
 
-                    float Vehx = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.VehicleVisualX);
-                    float Vehy = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.VehicleVisualY);
-                    float Vehz = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.VehicleVisualZ);
+                    float Vehx = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualX);
+                    float Vehy = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualY);
+                    float Vehz = GTA5Mem.Read<float>(General.WorldPTR, Offsets.VehicleVisualZ);
 
                     Task.Delay(10).Wait();
 
@@ -100,7 +100,7 @@ public static class Vehicle
                     GTA5Mem.Write<float>(dwpPickup + 0x94, Vehy);
                     GTA5Mem.Write<float>(dwpPickup + 0x98, Vehz);
 
-                    GTA5Mem.Write<float>(Globals.WorldPTR, new int[] { 0x08, 0xD30, 0x9F8 }, 0);
+                    GTA5Mem.Write<float>(General.WorldPTR, new int[] { 0x08, 0xD30, 0x9F8 }, 0);
                 }
             }
 
@@ -115,7 +115,7 @@ public static class Vehicle
     /// </summary>
     public static void FillHealth()
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Vehicle.Health, 1000.0f);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Vehicle.Health, 1000.0f);
     }
 
     public static void SpawnVehicle(long hash, float z255, int dist, int[] mod)
@@ -124,11 +124,11 @@ public static class Vehicle
         {
             if (hash != 0)
             {
-                float x = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
-                float y = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
-                float z = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
-                float sin = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerSin);
-                float cos = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerCos);
+                float x = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
+                float y = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
+                float z = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
+                float sin = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerSin);
+                float cos = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerCos);
 
                 x += cos * dist;
                 y += sin * dist;
@@ -196,11 +196,11 @@ public static class Vehicle
 
                 const int pegasus = 0;
 
-                float x = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionX);
-                float y = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionY);
-                float z = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerPositionZ);
-                float sin = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerSin);
-                float cos = GTA5Mem.Read<float>(Globals.WorldPTR, Offsets.PlayerCos);
+                float x = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionX);
+                float y = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionY);
+                float z = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerPositionZ);
+                float sin = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerSin);
+                float cos = GTA5Mem.Read<float>(General.WorldPTR, Offsets.PlayerCos);
 
                 x += cos * dist;
                 y += sin * dist;

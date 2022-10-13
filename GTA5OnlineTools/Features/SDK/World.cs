@@ -29,16 +29,16 @@ public static class World
     {
         if (weatherID == -1)
         {
-            GTA5Mem.Write(Globals.WeatherPTR + 0x24, -1);
-            GTA5Mem.Write(Globals.WeatherPTR + 0x104, 13);
+            GTA5Mem.Write(General.WeatherPTR + 0x24, -1);
+            GTA5Mem.Write(General.WeatherPTR + 0x104, 13);
         }
         if (weatherID == 13)
         {
-            GTA5Mem.Write(Globals.WeatherPTR + 0x24, 13);
-            GTA5Mem.Write(Globals.WeatherPTR + 0x104, 13);
+            GTA5Mem.Write(General.WeatherPTR + 0x24, 13);
+            GTA5Mem.Write(General.WeatherPTR + 0x104, 13);
         }
 
-        GTA5Mem.Write(Globals.WeatherPTR + 0x104, weatherID);
+        GTA5Mem.Write(General.WeatherPTR + 0x104, weatherID);
     }
 
     /// <summary>
@@ -47,7 +47,7 @@ public static class World
     public static void KillNPC(bool isOnlyHostility)
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR);
+        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
         long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
         int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
 
@@ -85,7 +85,7 @@ public static class World
     public static void KillPolice()
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR);
+        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
         long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
         int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
 
@@ -119,7 +119,7 @@ public static class World
     public static void DestroyNPCVehicles(bool isOnlyHostility)
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR);
+        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
         long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
         int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
 
@@ -165,7 +165,7 @@ public static class World
     public static void DestroyAllVehicles()
     {
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR);
+        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
         long m_vehicle_interface = GTA5Mem.Read<long>(m_replay + 0x10);
         long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
         int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
@@ -189,10 +189,10 @@ public static class World
     /// </summary>
     public static void TeleportNPCToMe(bool isOnlyHostility)
     {
-        Vector3 v3MyPos = GTA5Mem.Read<Vector3>(Globals.WorldPTR, Offsets.PlayerPositionX);
+        Vector3 v3MyPos = GTA5Mem.Read<Vector3>(General.WorldPTR, Offsets.PlayerPositionX);
 
         // Ped实体
-        long m_replay = GTA5Mem.Read<long>(Globals.ReplayInterfacePTR);
+        long m_replay = GTA5Mem.Read<long>(General.ReplayInterfacePTR);
         long m_ped_interface = GTA5Mem.Read<long>(m_replay + 0x18);
         int m_max_peds = GTA5Mem.Read<int>(m_ped_interface + 0x108);
 

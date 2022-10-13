@@ -9,7 +9,7 @@ public static class Weapon
     /// </summary>
     public static void FillCurrentAmmo()
     {
-        long pWeapon_AmmoInfo = GTA5Mem.Read<long>(Globals.WorldPTR, Offsets.Weapon.AmmoInfo);
+        long pWeapon_AmmoInfo = GTA5Mem.Read<long>(General.WorldPTR, Offsets.Weapon.AmmoInfo);
 
         int getMaxAmmo = GTA5Mem.Read<int>(pWeapon_AmmoInfo + 0x28);
 
@@ -37,7 +37,7 @@ public static class Weapon
     /// </summary>
     public static void FillAllAmmo()
     {
-        long pWeapon = GTA5Mem.Read<long>(Globals.WorldPTR, new int[] { 0x08, 0x10D0, 0x48 });
+        long pWeapon = GTA5Mem.Read<long>(General.WorldPTR, new int[] { 0x08, 0x10D0, 0x48 });
 
         int count = 0;
         while (GTA5Mem.Read<int>(pWeapon + count * 0x08) != 0 && GTA5Mem.Read<int>(pWeapon + count * 0x08, new int[] { 0x08 }) != 0)
@@ -105,7 +105,7 @@ public static class Weapon
     /// </summary>
     public static void AmmoModifier(byte flag)
     {
-        GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Weapon.AmmoModifier, flag);
+        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Weapon.AmmoModifier, flag);
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public static class Weapon
     /// </summary>
     public static void NoRecoil()
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Weapon.NoRecoil, 0.0f);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.NoRecoil, 0.0f);
     }
 
     /// <summary>
@@ -121,7 +121,7 @@ public static class Weapon
     /// </summary>
     public static void NoSpread()
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Weapon.NoSpread, 0.0f);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.NoSpread, 0.0f);
     }
 
     /// <summary>
@@ -129,7 +129,7 @@ public static class Weapon
     /// </summary>
     public static void ImpactType(byte type)
     {
-        GTA5Mem.Write<byte>(Globals.WorldPTR, Offsets.Weapon.ImpactType, type);
+        GTA5Mem.Write<byte>(General.WorldPTR, Offsets.Weapon.ImpactType, type);
     }
 
     /// <summary>
@@ -137,7 +137,7 @@ public static class Weapon
     /// </summary>
     public static void ImpactExplosion(int id)
     {
-        GTA5Mem.Write<int>(Globals.WorldPTR, Offsets.Weapon.ImpactExplosion, id);
+        GTA5Mem.Write<int>(General.WorldPTR, Offsets.Weapon.ImpactExplosion, id);
     }
 
     /// <summary>
@@ -145,8 +145,8 @@ public static class Weapon
     /// </summary>
     public static void Range()
     {
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Weapon.Range, 2000.0f);
-        GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Weapon.LockRange, 1000.0f);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.Range, 2000.0f);
+        GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.LockRange, 1000.0f);
     }
 
     /// <summary>
@@ -155,8 +155,8 @@ public static class Weapon
     public static void ReloadMult(bool isEnable)
     {
         if (isEnable)
-            GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 4.0f);
+            GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.ReloadMult, 4.0f);
         else
-            GTA5Mem.Write<float>(Globals.WorldPTR, Offsets.Weapon.ReloadMult, 1.0f);
+            GTA5Mem.Write<float>(General.WorldPTR, Offsets.Weapon.ReloadMult, 1.0f);
     }
 }

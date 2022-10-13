@@ -90,9 +90,9 @@ public partial class DrawWindow : Window
         {
             var windowData = GTA5Mem.GetGameWindowData();
 
-            this.Dispatcher.Invoke(() =>
+            this.Dispatcher.Invoke((Delegate)(() =>
             {
-                var width = Window_Draw.ActualWidth * ScreenHelper.GetScalingRatio();
+                var width = Window_Draw.ActualWidth * ScreenMgr.GetScalingRatio();
 
                 if (DrawData.IsDrawCenter)
                 {
@@ -105,8 +105,8 @@ public partial class DrawWindow : Window
                     this.Top = windowData.Top + windowData.Height - width;
                 }
 
-                this.Left /= ScreenHelper.GetScalingRatio();
-                this.Top /= ScreenHelper.GetScalingRatio();
+                this.Left /= ScreenMgr.GetScalingRatio();
+                this.Top /= ScreenMgr.GetScalingRatio();
 
                 if (IsPlayerInCar() && GTA5Mem.IsForegroundWindow())
                 {
@@ -145,7 +145,7 @@ public partial class DrawWindow : Window
                         isChange = false;
                     }
                 }
-            });
+            }));
 
             Thread.Sleep(200);
         }
@@ -168,7 +168,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private bool IsPlayerInCar()
     {
-        return GTA5Mem.Read<int>(Globals.WorldPTR, Offsets.InVehicle) == 1;
+        return GTA5Mem.Read<int>(General.WorldPTR, Offsets.InVehicle) == 1;
     }
 
     /// <summary>
@@ -179,10 +179,10 @@ public partial class DrawWindow : Window
     {
         if (IsPlayerInCar())
         {
-            var v3_1 = GTA5Mem.Read<Vector3>(Globals.WorldPTR, new int[] { 0x8, 0xD30, 0x7F0 });
+            var v3_1 = GTA5Mem.Read<Vector3>(General.WorldPTR, new int[] { 0x8, 0xD30, 0x7F0 });
             var VehicleSpeed1 = Math.Sqrt(Math.Pow(v3_1.X, 2) + Math.Pow(v3_1.Y, 2) + Math.Pow(v3_1.Z, 2));
 
-            var v3_2 = GTA5Mem.Read<Vector3>(Globals.WorldPTR, new int[] { 0x8, 0xD30, 0x7F0 });
+            var v3_2 = GTA5Mem.Read<Vector3>(General.WorldPTR, new int[] { 0x8, 0xD30, 0x7F0 });
             var VehicleSpeed2 = Math.Sqrt(Math.Pow(v3_2.X, 2) + Math.Pow(v3_2.Y, 2) + Math.Pow(v3_2.Z, 2));
 
             var VehicleSpeed = VehicleSpeed1 + (VehicleSpeed2 - VehicleSpeed1) * 0.5;
@@ -205,7 +205,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private double GetVehicleMaxSpeed()
     {
-        return GTA5Mem.Read<double>(Globals.UnkPTR, Offsets.VehicleMaxSpeed) * SpeedUnit;
+        return GTA5Mem.Read<double>(General.UnkPTR, Offsets.VehicleMaxSpeed) * SpeedUnit;
     }
 
     /// <summary>
@@ -214,7 +214,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private string GetVehicleGear()
     {
-        var gear = GTA5Mem.Read<int>(Globals.UnkPTR, Offsets.VehicleGear);
+        var gear = GTA5Mem.Read<int>(General.UnkPTR, Offsets.VehicleGear);
         return gear == 0 ? "R" : gear.ToString();
     }
 
@@ -224,7 +224,7 @@ public partial class DrawWindow : Window
     /// <returns></returns>
     private float GetVehicleRPM()
     {
-        return GTA5Mem.Read<float>(Globals.UnkPTR, Offsets.VehicleRPM);
+        return GTA5Mem.Read<float>(General.UnkPTR, Offsets.VehicleRPM);
     }
 }
 

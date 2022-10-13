@@ -1,6 +1,6 @@
 ﻿namespace GTA5OnlineTools.Features.SDK;
 
-public static class Globals
+public static class General
 {
     public static long WorldPTR;
     public static long BlipPTR;

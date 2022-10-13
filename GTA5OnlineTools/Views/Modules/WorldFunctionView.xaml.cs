@@ -192,7 +192,7 @@ public partial class WorldFunctionView : UserControl
     {
         AudioUtil.ClickSound();
 
-        Vector3 vector3 = GTA5Mem.Read<Vector3>(Globals.WorldPTR, Offsets.PlayerPositionX);
+        Vector3 vector3 = GTA5Mem.Read<Vector3>(General.WorldPTR, Offsets.PlayerPositionX);
 
         TeleportData.CustomTeleport.Add(new TeleportData.TeleportInfo()
         {

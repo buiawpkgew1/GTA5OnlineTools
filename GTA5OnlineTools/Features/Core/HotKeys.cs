@@ -1,128 +1,80 @@
 ﻿namespace GTA5OnlineTools.Features.Core;
 
-public class HotKeys
+public static class HotKeys
 {
-    // Keys holder 按键持有者
-    private Dictionary<int, MyKeys> keys;
+    private static Dictionary<int, WinKey> WinHotKeys;
 
-    // Update thread 更新线程
-    private readonly int interval = 20;
-
-    // Keys events 按键事件
-    public delegate void KeyHandler(int Id, string Name);
-    public event KeyHandler KeyUpEvent;
-    public event KeyHandler KeyDownEvent;
-
-    private bool isRun = true;
+    public delegate void KeyHandler(WinVK vK);
+    public static event KeyHandler KeyUpEvent;
+    public static event KeyHandler KeyDownEvent;
 
     /// <summary>
-    /// Init 初始化
+    /// 初始化
     /// </summary>
-    public HotKeys()
+    static HotKeys()
     {
-        keys = new Dictionary<int, MyKeys>();
-        var thread = new Thread(Update)
+        WinHotKeys = new();
+        new Thread(UpdateHotKeyThread)
         {
+            Name = "UpdateHotKeyThread",
             IsBackground = true
-        };
-        thread.Start();
+        }.Start();
     }
 
     /// <summary>
-    /// 释放按键监听线程
-    /// </summary>
-    public void Dispose()
-    {
-        isRun = false;
-    }
-
-    /// <summary>
-    /// Key Up 键弹起
+    /// 按键按下
     /// </summary>
     /// <param name="Id"></param>
     /// <param name="Name"></param>
-    protected void OnKeyUp(int Id, string Name)
+    private static void OnKeyDown(WinVK vK)
     {
-        if (KeyUpEvent != null)
-        {
-            KeyUpEvent(Id, Name);
-        }
+        KeyDownEvent?.Invoke(vK);
     }
 
     /// <summary>
-    /// Key Down 键按下
+    /// 按键弹起
     /// </summary>
     /// <param name="Id"></param>
     /// <param name="Name"></param>
-    protected void OnKeyDown(int Id, string Name)
+    private static void OnKeyUp(WinVK vK)
     {
-        if (KeyDownEvent != null)
-        {
-            KeyDownEvent(Id, Name);
-        }
+        KeyUpEvent?.Invoke(vK);
     }
 
     /// <summary>
-    /// Add key 增加键
-    /// </summary>
-    /// <param name="keyId"></param>
-    /// <param name="keyName"></param>
-    public void AddKey(int keyId, string keyName)
-    {
-        if (!keys.ContainsKey(keyId))
-        {
-            keys.Add(keyId, new MyKeys(keyId, keyName));
-        }
-    }
-
-    /// <summary>
-    /// Add key 增加键
+    /// 增加快捷按键
     /// </summary>
     /// <param name="key"></param>
-    public void AddKey(WinVK key)
+    public static void AddKey(WinVK key)
     {
         int keyId = (int)key;
-        if (!keys.ContainsKey(keyId))
+        if (!WinHotKeys.ContainsKey(keyId))
         {
-            keys.Add(keyId, new MyKeys(keyId, key.ToString()));
+            WinHotKeys.Add(keyId, new WinKey() { Key = key });
         }
     }
 
     /// <summary>
-    /// Is Key Down 键是否按下
-    /// </summary>
-    /// <param name="keyId"></param>
-    /// <returns></returns>
-    public bool IsKeyDown(int keyId)
-    {
-        if (keys.TryGetValue(keyId, out MyKeys value))
-        {
-            return value.IsKeyDown;
-        }
-        return false;
-    }
-
-    /// <summary>
-    /// Update Thread 更新线程
+    /// 按键监听线程
     /// </summary>
     /// <param name="sender"></param>
-    private void Update(object sender)
+    private static void UpdateHotKeyThread(object sender)
     {
-        while (isRun)
+        while (Globals.IsAppRunning)
         {
-            if (keys.Count > 0)
+            if (WinHotKeys.Count > 0)
             {
-                List<MyKeys> keysData = new List<MyKeys>(keys.Values);
+                var keysData = new List<WinKey>(WinHotKeys.Values);
                 if (keysData != null && keysData.Count > 0)
                 {
-                    foreach (MyKeys key in keysData)
+                    foreach (WinKey key in keysData)
                     {
-                        if (Convert.ToBoolean(Win32.GetKeyState(key.Id) & Win32.KEY_PRESSED))
+                        if (Convert.ToBoolean(Win32.GetKeyState((int)key.Key) & Win32.KEY_PRESSED))
                         {
                             if (!key.IsKeyDown)
                             {
                                 key.IsKeyDown = true;
-                                OnKeyDown(key.Id, key.Name);
+                                OnKeyDown(key.Key);
                             }
                         }
                         else
@@ -130,43 +82,20 @@ public class HotKeys
                             if (key.IsKeyDown)
                             {
                                 key.IsKeyDown = false;
-                                OnKeyUp(key.Id, key.Name);
+                                OnKeyUp(key.Key);
                             }
                         }
                     }
                 }
             }
 
-            Thread.Sleep(interval);
+            Thread.Sleep(20);
         }
     }
 }
 
-public class MyKeys
+public class WinKey
 {
-    private string keyName;
-    private int keyId;
-    private bool keyDown;
-
-    public MyKeys(int keyId, string keyName)
-    {
-        this.keyId = keyId;
-        this.keyName = keyName;
-    }
-
-    public string Name
-    {
-        get { return keyName; }
-    }
-
-    public int Id
-    {
-        get { return keyId; }
-    }
-
-    public bool IsKeyDown
-    {
-        get { return keyDown; }
-        set { keyDown = value; }
-    }
+    public WinVK Key { get; set; }
+    public bool IsKeyDown { get; set; }
 }
