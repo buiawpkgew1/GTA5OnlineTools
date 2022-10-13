@@ -21,7 +21,7 @@
         <Setter Property="ScrollViewer.PanningMode" Value="VerticalFirst" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
         <Setter Property="Margin" Value="5" />
-        <Setter Property="Padding" Value="5" />
+        <Setter Property="Padding" Value="8" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="TextWrapping" Value="NoWrap" />
         <Setter Property="InputLanguageManager.InputLanguage" Value="en-US" />
@@ -38,7 +38,6 @@
                         <Grid>
                             <ScrollViewer
                                 x:Name="PART_ContentHost"
-                                Margin="{TemplateBinding Margin}"
                                 Padding="{TemplateBinding Padding}"
                                 ContextMenu="{TemplateBinding ContextMenu}"
                                 Focusable="false"
@@ -46,7 +45,6 @@
                                 VerticalScrollBarVisibility="Hidden" />
                             <TextBlock
                                 Name="hint"
-                                Margin="{TemplateBinding Margin}"
                                 Padding="{TemplateBinding Padding}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 ContextMenu="{TemplateBinding ContextMenu}"

@@ -30,10 +30,6 @@
     <None Remove="Assets\Images\Hacks\LSCHax.png" />
     <None Remove="Assets\Images\Hacks\YimMenu.png" />
     <None Remove="Assets\Images\Launch.png" />
-    <None Remove="Assets\Images\Tips\InputENG.png" />
-    <None Remove="Assets\Images\Tips\PericoHeist01.png" />
-    <None Remove="Assets\Images\Tips\PericoHeist02.png" />
-    <None Remove="Assets\Images\Tips\PlayerName.png" />
     <None Remove="Features\Files\BincoHax.exe" />
     <None Remove="Features\Files\dControl.exe" />
     <None Remove="Features\Files\dControl.ini" />
@@ -100,10 +96,6 @@
     <Resource Include="Assets\Images\Hacks\LSCHax.png" />
     <Resource Include="Assets\Images\Hacks\YimMenu.png" />
     <Resource Include="Assets\Images\Launch.png" />
-    <Resource Include="Assets\Images\Tips\InputENG.png" />
-    <Resource Include="Assets\Images\Tips\PericoHeist01.png" />
-    <Resource Include="Assets\Images\Tips\PericoHeist02.png" />
-    <Resource Include="Assets\Images\Tips\PlayerName.png" />
   </ItemGroup>
 
   <ItemGroup>

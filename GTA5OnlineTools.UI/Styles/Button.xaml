@@ -15,6 +15,7 @@
                     <Border
                         Name="border"
                         Padding="{TemplateBinding Padding}"
+                        VerticalAlignment="Center"
                         Background="{TemplateBinding Background}"
                         CornerRadius="5"
                         SnapsToDevicePixels="True">

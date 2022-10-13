@@ -95,59 +95,6 @@
 
         </StackPanel>
         <!--  面板2  -->
-        <RichTextBox
-            Margin="5"
-            Style="{StaticResource RichTextBoxStyle_Page}"
-            VerticalScrollBarVisibility="Hidden">
-            <FlowDocument>
-                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
-                    提示
-                </Paragraph>
-                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
-                    添加颜色样式代码只建议修改第一项“在线列表”，剩下两项加了颜色样式代码昵称游戏中也会显示对应代码而不是颜色样式
-                </Paragraph>
-                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
-                    修改示例：~o~Hello ~b~Kitty<LineBreak />
-                    <Image
-                        Margin="0,5,0,5"
-                        Source="/Assets/Images/Tips/PlayerName.png"
-                        Stretch="Uniform"
-                        Style="{StaticResource ImageStyle_HighQuality}">
-                        <Image.ToolTip>
-                            <Image
-                                Source="/Assets/Images/Tips/PlayerName.png"
-                                Stretch="Uniform"
-                                Style="{StaticResource ImageStyle_HighQuality}" />
-                        </Image.ToolTip>
-                    </Image>
-                </Paragraph>
-                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
-                    昵称颜色
-                </Paragraph>
-                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
-                    ~r~ = 红色<LineBreak />
-                    ~b~ = 蓝色<LineBreak />
-                    ~x~ = 淡蓝色<LineBreak />
-                    ~g~ = 绿色<LineBreak />
-                    ~t~ = 淡绿色<LineBreak />
-                    ~y~ = 黄色<LineBreak />
-                    ~p~ = 紫色<LineBreak />
-                    ~q~ = 粉红色<LineBreak />
-                    ~o~ = 橘黄色<LineBreak />
-                    ~c~ = 灰色<LineBreak />
-                    ~m~ = 深灰色<LineBreak />
-                    ~u~ = 黑色<LineBreak />
-                    ~w~ =  白色</Paragraph>
-                <Paragraph Style="{StaticResource ParagraphStyle_Title}">
-                    昵称样式
-                </Paragraph>
-                <Paragraph Style="{StaticResource ParagraphStyle_Content}">
-                    ~bold~ ~h~ = 粗体<LineBreak />
-                    ~italic~ = 斜体<LineBreak />
-                    ~ws~ = 通缉警星</Paragraph>
-            </FlowDocument>
-        </RichTextBox>
-        <!--  面板3  -->
         <StackPanel>
             <ui:UiLabelEmoji Content="玩家昵称（最大20字符）" />
             <StackPanel Margin="5,0,5,0">
@@ -176,12 +123,86 @@
             </StackPanel>
             <!--  ##########  -->
             <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：修改成功后，切换战局生效
+                提示：修改成功后，切换战局生效，建议三个同时修改
             </TextBlock>
-            <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
-                提示：第三个《对外显示》修改成功后切换战局生效（其他玩家可见）
+            <TextBlock Foreground="#4C4A48" Style="{StaticResource TextBlockStyle_Hint}">
+                特殊修改示例：~o~Hello ~b~Kitty
             </TextBlock>
+            <UniformGrid Margin="5,0,5,0" Columns="2">
+                <TextBlock Foreground="#4C4A48" Style="{StaticResource TextBlockStyle_Hint}">
+                    ### 昵称颜色 ###<LineBreak />
+                    ~r~ = 红色<LineBreak />
+                    ~b~ = 蓝色<LineBreak />
+                    ~x~ = 淡蓝色<LineBreak />
+                    ~g~ = 绿色<LineBreak />
+                    ~t~ = 淡绿色<LineBreak />
+                    ~y~ = 黄色<LineBreak />
+                    ~p~ = 紫色<LineBreak />
+                    ~q~ = 粉红色<LineBreak />
+                    ~o~ = 橘黄色<LineBreak />
+                    ~c~ = 灰色<LineBreak />
+                    ~m~ = 深灰色<LineBreak />
+                    ~u~ = 黑色<LineBreak />
+                    ~w~ =  白色</TextBlock>
+                <TextBlock Foreground="#4C4A48" Style="{StaticResource TextBlockStyle_Hint}">
+                    ### 昵称样式 ###<LineBreak />
+                    ~bold~ ~h~ = 粗体<LineBreak />
+                    ~italic~ = 斜体<LineBreak />
+                    ~ws~ = 通缉警星</TextBlock>
+            </UniformGrid>
         </StackPanel>
+        <!--  面板3  -->
+        <DockPanel LastChildFill="True">
+            <ui:UiLabelEmoji Content="垃圾信息屏蔽" DockPanel.Dock="Top" />
+            <ui:UiButtonEmoji
+                x:Name="Button_InjectGTA5Process"
+                Click="Button_InjectGTA5Process_Click"
+                Content="注入到GTA5进程"
+                DockPanel.Dock="Top"
+                Emoji="💉" />
+            <ui:UiLabelEmoji Content="编辑屏蔽关键词" DockPanel.Dock="Top" />
+            <UniformGrid Columns="2" DockPanel.Dock="Bottom">
+                <ListBox
+                    x:Name="ListBox_BlcokWords"
+                    Margin="5,5,0,5"
+                    DockPanel.Dock="Left"
+                    SelectedIndex="0" />
+                <StackPanel DockPanel.Dock="Right">
+                    <ui:UiTextBoxHint x:Name="TextBox_InputBlcokWord" Hint="请输入关键词" />
+                    <ui:UiButtonEmoji
+                        x:Name="Button_AddBlcokWords"
+                        Click="Button_AddBlcokWords_Click"
+                        Content="增加"
+                        Emoji="➕" />
+                    <ui:UiButtonEmoji
+                        x:Name="Button_RemoveBlcokWords"
+                        Click="Button_RemoveBlcokWords_Click"
+                        Content="删除"
+                        Emoji="🗑"
+                        Foreground="#FF8C00" />
+                    <ui:UiButtonEmoji
+                        x:Name="Button_SaveBlcokWords"
+                        Click="Button_SaveBlcokWords_Click"
+                        Content="保存列表"
+                        Emoji="💾" />
+                    <ui:UiButtonEmoji
+                        x:Name="Button_DefaultBlcokWords"
+                        Click="Button_DefaultBlcokWords_Click"
+                        Content="预设列表"
+                        Emoji="💽" />
+
+                    <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                        提示：注入成功后会有滴一声提示音，按END键卸载注入
+                    </TextBlock>
+                    <TextBlock Style="{StaticResource TextBlockStyle_Hint}">
+                        提示：如果要修改过滤关键词（不区分大小写），请先保存然后卸载注入后重新注入，切换战局生效
+                    </TextBlock>
+                </StackPanel>
+            </UniformGrid>
+        </DockPanel>
+        <!--  面板4  -->
+        <StackPanel />
+
     </UniformGrid>
 
 </UserControl>

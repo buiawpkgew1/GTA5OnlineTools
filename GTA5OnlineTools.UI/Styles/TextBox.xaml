@@ -3,8 +3,9 @@
     <!--  全局TextBox样式  -->
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="Margin" Value="5" />
-        <Setter Property="Padding" Value="5" />
+        <Setter Property="Padding" Value="7" />
         <Setter Property="TextWrapping" Value="NoWrap" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
