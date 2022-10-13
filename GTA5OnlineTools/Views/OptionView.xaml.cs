@@ -22,8 +22,8 @@ public partial class OptionView : UserControl
         // 如果配置文件不存在就创建
         if (!File.Exists(FileUtil.F_Option_Path))
         {
-            OptionConfig.ClickAudioIndex = 4;
-            RadioButton_ClickAudio_4.IsChecked = true;
+            OptionConfig.ClickAudioIndex = AudioUtil.ClickAudioIndex;
+            RadioButton_ClickAudio_3.IsChecked = true;
             // 保存配置文件
             SaveConfig();
         }

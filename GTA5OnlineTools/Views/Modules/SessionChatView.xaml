@@ -171,17 +171,20 @@
                     <ui:UiTextBoxHint x:Name="TextBox_InputBlcokWord" Hint="请输入关键词" />
                     <ui:UiButtonEmoji
                         x:Name="Button_AddBlcokWords"
+                        Margin="5,5,5,0"
                         Click="Button_AddBlcokWords_Click"
                         Content="增加"
                         Emoji="➕" />
                     <ui:UiButtonEmoji
                         x:Name="Button_RemoveBlcokWords"
+                        Margin="5,5,5,0"
                         Click="Button_RemoveBlcokWords_Click"
                         Content="删除"
                         Emoji="🗑"
                         Foreground="#FF8C00" />
                     <ui:UiButtonEmoji
                         x:Name="Button_SaveBlcokWords"
+                        Margin="5,5,5,0"
                         Click="Button_SaveBlcokWords_Click"
                         Content="保存列表"
                         Emoji="💾" />

@@ -15,7 +15,7 @@ public static class AudioUtil
     /// <summary>
     /// 点击提示音索引
     /// </summary>
-    public static int ClickAudioIndex = 4;
+    public static int ClickAudioIndex = 3;
 
     /// <summary>
     /// 播放点击音效

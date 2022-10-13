@@ -60,7 +60,7 @@ public partial class ModulesView : UserControl
         MenuBars.Add(new MenuBar() { Emoji = "🍑", Title = "战局聊天", NameSpace = "SessionChatView" });
         MenuBars.Add(new MenuBar() { Emoji = "🥭", Title = "任务帮手", NameSpace = "JobHelperView" });
         MenuBars.Add(new MenuBar() { Emoji = "🚗", Title = "服装编辑", NameSpace = "OutfitsEditView" });
-        MenuBars.Add(new MenuBar() { Emoji = "🚙", Title = "STAT脚本", NameSpace = "StatScriptsView" });
+        MenuBars.Add(new MenuBar() { Emoji = "🚙", Title = "预设脚本", NameSpace = "StatScriptsView" });
         MenuBars.Add(new MenuBar() { Emoji = "🚌", Title = "抢劫分红", NameSpace = "HeistCutView" });
     }
 

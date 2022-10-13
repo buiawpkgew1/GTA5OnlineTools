@@ -345,14 +345,15 @@
                 <DockPanel
                     Grid.Row="0"
                     Margin="1"
+                    Background="#F5F5F5"
                     LastChildFill="False">
                     <emoji:TextBlock
                         Margin="5,0,0,0"
                         VerticalAlignment="Center"
                         DockPanel.Dock="Left"
-                        FontSize="16"
+                        FontSize="18"
                         FontWeight="Bold"
-                        Foreground="#0984E3"
+                        Foreground="#13A10E"
                         Text="📖 使用说明" />
                     <Button
                         Command="{Binding FrameHideClickCommand}"

@@ -297,6 +297,8 @@ public partial class CheatsView : UserControl
     /// </summary>
     private void FrameHideClick()
     {
+        AudioUtil.PlayClickSound();
+
         CheatsModel.FrameState = Visibility.Collapsed;
         CheatsModel.FrameContent = null;
     }
