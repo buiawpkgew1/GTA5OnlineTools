@@ -17,7 +17,7 @@ public static class FileUtil
 
     public const string F_GTAHaxStat_Path = D_Cache_Path + "stat.txt";
 
-    public static string F_Option_Path = D_Config_Path +"OptionConfig.json";
+    public static string F_Option_Path = D_Config_Path + "OptionConfig.json";
 
     public static string F_BlockWords_Path = D_Config_Path + "BlockWords.txt";
     public static string F_CustomTPList_Path = D_Config_Path + "CustomTPList.json";
@@ -121,5 +121,31 @@ public static class FileUtil
         Directory.CreateDirectory(path);
         path += $@"\#ErrorLog# {DateTime.Now:yyyyMMdd_HH-mm-ss_ffff}.log";
         File.WriteAllText(path, logContent);
+    }
+
+    /// <summary>
+    /// 清空指定文件夹下的文件及文件夹
+    /// </summary>
+    /// <param name="srcPath">文件夹路径</param>
+    public static void DelectDir(string srcPath)
+    {
+        try
+        {
+            var dir = new DirectoryInfo(srcPath);
+            var fileinfo = dir.GetFileSystemInfos();
+            foreach (var file in fileinfo)
+            {
+                if (file is DirectoryInfo)
+                {
+                    var subdir = new DirectoryInfo(file.FullName);
+                    subdir.Delete(true);
+                }
+                else
+                {
+                    File.Delete(file.FullName);
+                }
+            }
+        }
+        catch (Exception) { }
     }
 }

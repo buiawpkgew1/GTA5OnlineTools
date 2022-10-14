@@ -117,6 +117,9 @@ public partial class LoadWindow
 
                     General.UnkPTR = GTA5Mem.FindPattern(Offsets.Mask.UnkMask);
                     General.UnkPTR = GTA5Mem.Rip_37(General.UnkPTR);
+
+                    General.LocalScriptsPTR = GTA5Mem.FindPattern(Offsets.Mask.LocalScriptsMask);
+                    General.LocalScriptsPTR = GTA5Mem.Rip_37(General.LocalScriptsPTR);
                 }
 
                 /////////////////////////////////////////////////////////////////////
@@ -124,17 +127,16 @@ public partial class LoadWindow
                 LoadModel.LoadState = "正在初始化配置文件...";
                 LoggerHelper.Info("正在初始化配置文件...");
 
-                // 清空缓存文件夹
-                if (File.Exists(FileUtil.D_Cache_Path))
-                    Directory.Delete(FileUtil.D_Cache_Path, true);
-                Directory.CreateDirectory(FileUtil.D_Cache_Path);
-
                 // 创建指定文件夹，用于释放必要文件和更新软件（如果已存在则不会创建）
+                Directory.CreateDirectory(FileUtil.D_Cache_Path);
                 Directory.CreateDirectory(FileUtil.D_Config_Path);
                 Directory.CreateDirectory(FileUtil.D_Kiddion_Path);
                 Directory.CreateDirectory(FileUtil.D_KiddionScripts_Path);
                 Directory.CreateDirectory(FileUtil.D_Inject_Path);
                 Directory.CreateDirectory(FileUtil.D_Log_Path);
+
+                // 清空缓存文件夹
+                FileUtil.DelectDir(FileUtil.D_Cache_Path);
 
                 // 释放必要文件
                 FileUtil.ExtractResFile(FileUtil.Resource_Kiddion_Path + "Kiddion.exe", FileUtil.D_Kiddion_Path + "Kiddion.exe");

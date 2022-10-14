@@ -273,10 +273,8 @@ public partial class ToolsView : UserControl
             {
                 Directory.SetCurrentDirectory(FileUtil.CurrentDirectory_Path);
                 ProcessUtil.CloseThirdProcess();
-                Thread.Sleep(20);
-                if (File.Exists(FileUtil.Default_Path))
-                    Directory.Delete(FileUtil.Default_Path, true);
-                Directory.CreateDirectory(FileUtil.Default_Path);
+                Thread.Sleep(50);
+                FileUtil.DelectDir(FileUtil.Default_Path);
 
                 App.AppMainMutex.Dispose();
                 ProcessUtil.OpenPath(FileUtil.Current_Path);

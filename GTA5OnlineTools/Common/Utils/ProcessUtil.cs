@@ -107,11 +107,10 @@ public static class ProcessUtil
     /// <param name="processName">程序名字，不需要加.exe</param>
     public static void CloseProcess(string processName)
     {
-        var appProcess = Process.GetProcesses();
+        var appProcess = Process.GetProcessesByName(processName);
         foreach (var targetPro in appProcess)
         {
-            if (targetPro.ProcessName.Equals(processName))
-                targetPro.Kill();
+            targetPro.Kill();
         }
     }
 
