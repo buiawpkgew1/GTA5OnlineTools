@@ -58,7 +58,7 @@ jobs:
     env:
       Solution_Name: GTA5OnlineTools.sln                        # Replace with your solution name, i.e. MyWpfApp.sln.
       Test_Project_Path: GTA5OnlineTools\GTA5OnlineTools.csproj                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      Wap_Project_Directory: GTA5OnlineTools\    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+      Wap_Project_Directory: GTA5OnlineTools/bin/Release    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
       Wap_Project_Path: GTA5OnlineTools\GTA5OnlineTools.csproj                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
@@ -112,4 +112,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: MSIX Package
-        path: ${{ env.Wap_Project_Directory }}\AppPackages
+        path: ${{ env.Wap_Project_Directory }}/net6.0-windows/
