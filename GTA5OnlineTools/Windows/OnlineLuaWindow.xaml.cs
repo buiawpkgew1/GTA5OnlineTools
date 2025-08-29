@@ -98,7 +98,7 @@ public partial class OnlineLuaWindow
                 stream.Close();
 
                 ClearLogger();
-                AppendLogger("无法连接服务器,Lua索引可能不是最新版本");
+                AppendLogger("Lua版本信息获取失败,但您下载的仍是最新版本.\n如果此问题持续存在,请尝试使用 工具-运行网络诊断 修复.");
                 NotifierHelper.Show(NotifierType.Warning, "无法获取服务器Lua列表，返回结果为空");
             }
 

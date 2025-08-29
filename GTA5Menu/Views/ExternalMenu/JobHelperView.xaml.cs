@@ -68,7 +68,7 @@ public partial class JobHelperView : UserControl
         // 移除地堡进货延迟
         if (_options.BunkerSupplyDelay)
             Online.BunkerSupplyDelay(true);
-        // 解锁地堡所有研究 (临时)
+        // 解锁地堡所有研究 (永久)
         if (_options.UnlockBunkerResearch)
             Online.UnlockBunkerResearch(true);
 
@@ -166,12 +166,6 @@ public partial class JobHelperView : UserControl
         Online.BunkerSupplyDelay(_options.BunkerSupplyDelay);
     }
 
-    private void CheckBox_UnlockBunkerResearch_Click(object sender, RoutedEventArgs e)
-    {
-        _options.UnlockBunkerResearch = CheckBox_UnlockBunkerResearch.IsChecked == true;
-        Online.UnlockBunkerResearch(_options.UnlockBunkerResearch);
-    }
-
     private void CheckBox_MCSupplyDelay_Click(object sender, RoutedEventArgs e)
     {
         _options.MCSupplyDelay = CheckBox_MCSupplyDelay.IsChecked == true;
@@ -212,5 +206,10 @@ public partial class JobHelperView : UserControl
     {
         _options.PayphoneHitCooldown = CheckBox_PayphoneHitCooldown.IsChecked == true;
         Online.PayphoneHitCooldown(_options.PayphoneHitCooldown);
+    }
+
+    private void Button_BunkerSupplyDelay_Click(object sender, RoutedEventArgs e)
+    {
+        Online.UnlockBunkerResearch(true);
     }
 }
